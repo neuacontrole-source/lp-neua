@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TJL35DD9');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1266083025741061');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1266083025741061&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Redirecionando para o Grupo VIP neua no WhatsApp..." />
+  <title>Grupo VIP neua — Redirecionando...</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-black: #000000;
+      --color-white: #ffffff;
+      --color-blue:  #2176ff;
+      --font-primary: 'Inter Tight', system-ui, -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: var(--color-black);
+      color: var(--color-white);
+      font-family: var(--font-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse at center, #000000 0%, #000000 45%, #04060d 80%, #060912 100%);
+      background-attachment: fixed;
+    }
+
+    .page {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      isolation: isolate;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: center;
+      padding: 48px 24px 0;
+    }
+
+    .header__logo {
+      display: inline-block;
+      line-height: 0;
+      opacity: 0;
+      animation: logoIn 800ms ease-out 100ms forwards;
+    }
+
+    .header__logo svg {
+      width: 120px;
+      height: auto;
+      display: block;
+    }
+
+    @keyframes logoIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MAIN */
+    .main {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .main::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 480px;
+      height: 480px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(33, 118, 255, 0.12) 0%, rgba(33, 118, 255, 0) 70%);
+      filter: blur(80px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .phrases {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+      height: 44px;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+
+    .phrase {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        opacity 500ms cubic-bezier(0.25, 0.8, 0.25, 1),
+        transform 500ms cubic-bezier(0.25, 0.8, 0.25, 1);
+      pointer-events: none;
+      will-change: opacity, transform;
+    }
+
+    .phrase.is-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .phrase.is-leaving {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    .progress {
+      position: relative;
+      width: 80%;
+      max-width: 400px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .progress__bar {
+      position: relative;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #2176ff 0%, #5a9aff 100%);
+      border-radius: 9999px;
+      animation: fill 4000ms ease-out forwards;
+      overflow: hidden;
+    }
+
+    .progress__bar::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.55) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      animation: shine 1400ms ease-in-out infinite;
+    }
+
+    @keyframes fill {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
+
+    @keyframes shine {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(420px); }
+    }
+
+    .microcopy {
+      margin-top: 32px;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 0.02em;
+      max-width: 360px;
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    .footer {
+      display: flex;
+      justify-content: center;
+      padding: 24px 24px 32px;
+    }
+
+    .footer__copy {
+      margin: 0;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.02em;
+    }
+
+    /* DESKTOP */
+    @media (min-width: 768px) {
+      .header { padding-top: 64px; }
+      .header__logo svg { width: 140px; }
+      .phrases { height: 52px; margin-bottom: 48px; }
+      .phrase { font-size: 28px; }
+      .microcopy { margin-top: 40px; font-size: 14px; }
+      .main::before { width: 640px; height: 640px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .header__logo { animation: none; opacity: 1; }
+      .phrase { transition: opacity 200ms linear; transform: none; }
+      .phrase.is-leaving { transform: none; }
+      .progress__bar { animation: none; width: 100%; }
+      .progress__bar::after { animation: none; display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJL35DD9"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div class="page">
+    <header class="header">
+      <a href="https://neua.com.br" class="header__logo" aria-label="neua">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1890.04 283.77" aria-hidden="true">
+          <path fill="#fff" d="M481.7,93.04v96.57c0,53.92,38.63,92.54,92.54,92.54h350.06v-64.38h-350.06c-18.51,0-28.17-9.66-28.17-28.16v-16.1h378.22v-64.38h-378.22v-16.09c0-18.51,9.66-28.16,28.17-28.16h350.06V.5h-350.06c-53.92,0-92.54,38.63-92.54,92.54Z"/>
+          <path fill="#fff" d="M1342.79,189.61c0,18.51-9.66,28.16-28.16,28.16h-257.52c-18.51,0-28.17-9.66-28.17-28.16V.5h-64.38v189.11c0,53.92,38.63,92.54,92.54,92.54h257.52c53.92,0,92.54-38.63,92.54-92.54V.5h-64.38v189.11Z"/>
+          <path fill="#fff" d="M1797.49.5h-257.51c-53.92,0-92.54,38.63-92.54,92.54v96.57c0,53.92,38.63,92.54,92.54,92.54h51.1c44.66,0,94.15-20.52,125.94-52.31l22.94-23.34c19.72-19.31,52.31-33,80.07-33h5.64v108.64h64.38V93.04c0-53.92-38.63-92.54-92.54-92.54ZM1825.66,109.14h-5.64c-44.66,0-94.15,20.52-125.94,52.31l-22.93,23.34c-19.72,19.31-52.31,32.99-80.07,32.99h-51.1c-18.51,0-28.17-9.66-28.17-28.16v-96.57c0-18.51,9.65-28.16,28.17-28.16h257.51c18.51,0,28.17,9.65,28.17,28.16v16.09Z"/>
+          <path fill="#fff" d="M368.82,280.04l-81.29-180.53C254.69,25.09,213.98,0,126.1,0H0v283.77h70.82V55.12h55.27c28.73,0,68.09,11.59,92.55,66.99l73,161.67h148.56V1.38h-71.39v278.66Z"/>
+        </svg>
+      </a>
+    </header>
+
+    <main class="main">
+      <div class="phrases" aria-live="polite" aria-atomic="true">
+        <p class="phrase is-active" data-phrase="0">Preparando as melhores ofertas...</p>
+        <p class="phrase" data-phrase="1">Liberando seu acesso ao grupo VIP...</p>
+      </div>
+
+      <div class="progress" role="progressbar" aria-label="Progresso do redirecionamento" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress__bar"></div>
+      </div>
+
+      <p class="microcopy">Aguarde, você será redirecionado para o grupo em instantes.</p>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copy">© 2026 neua</p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var REDIRECT_URL = 'https://chat.whatsapp.com/Jgh0yXqMa0r7OzRfTMyC1E';
+      var TOTAL_MS = 4000;
+
+      // Preserve UTMs in localStorage
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var keys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'];
+        var captured = {};
+        var hasAny = false;
+        keys.forEach(function (k) {
+          var v = params.get(k);
+          if (v) { captured[k] = v; hasAny = true; }
+        });
+        if (hasAny) {
+          captured.timestamp = new Date().toISOString();
+          localStorage.setItem('neua_last_utm', JSON.stringify(captured));
+        }
+      } catch (e) { /* localStorage indisponível, segue o jogo */ }
+
+      // Rotating phrases — 2 phrases, 2000ms each over 4000ms
+      var phrases = document.querySelectorAll('.phrase');
+      var step = TOTAL_MS / phrases.length;
+      for (var i = 1; i < phrases.length; i++) {
+        (function (idx) {
+          setTimeout(function () {
+            phrases.forEach(function (el, k) {
+              if (k < idx) {
+                el.classList.remove('is-active');
+                el.classList.add('is-leaving');
+              } else if (k === idx) {
+                el.classList.remove('is-leaving');
+                el.classList.add('is-active');
+              }
+            });
+          }, step * idx);
+        })(i);
+      }
+
+      // Fire tracking + redirect at 4000ms
+      setTimeout(function () {
+        try {
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead', { content_name: 'Grupo VIP Redirect' });
+          }
+        } catch (e) {}
+        try {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'lead_grupo_vip_redirect' });
+        } catch (e) {}
+        window.location.href = REDIRECT_URL;
+      }, TOTAL_MS);
+    })();
+  </script>
+</body>
+</html>

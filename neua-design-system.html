@@ -1,0 +1,4021 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neua — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-primary);
+      background: var(--color-white);
+      color: var(--color-black);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+
+    /* ============================================================
+       DESIGN TOKENS — CORES
+    ============================================================ */
+    :root {
+      /* Base */
+      --color-black:        #141414;
+      --color-white:        #ffffff;
+
+      /* Escala de cinza */
+      --color-gray-50:      #f7f7f7;
+      --color-gray-100:     #f0f0f0;
+      --color-gray-200:     #e4e4e4;
+      --color-gray-300:     #d0d0d0;
+      --color-gray-400:     #b0b0b0;
+      --color-gray-500:     #888888;
+      --color-gray-600:     #5c5c5c;
+      --color-gray-700:     #3a3a3a;
+      --color-gray-800:     #262626;
+      --color-gray-900:     #1a1a1a;
+
+      /* Destaque — usar com parcimônia */
+      --color-blue:         #2176ff;
+      --color-blue-hover:   #1a5fd9;
+      --color-blue-light:   #e8f0ff;
+
+      /* Estados */
+      --color-error:        #e53935;
+      --color-error-light:  #fdecea;
+      --color-success:      #1e7e34;
+      --color-success-light:#e6f4ea;
+      --color-disabled-bg:  var(--color-gray-100);
+      --color-disabled-text:var(--color-gray-400);
+
+      /* ============================================================
+         DESIGN TOKENS — TIPOGRAFIA
+      ============================================================ */
+      --font-primary:   'Inter Tight', sans-serif;
+      --font-secondary: 'Space Grotesk', sans-serif;
+
+      /* Escala de tamanhos */
+      --text-xs:    0.75rem;   /* 12px */
+      --text-sm:    0.875rem;  /* 14px */
+      --text-base:  1rem;      /* 16px */
+      --text-lg:    1.125rem;  /* 18px */
+      --text-xl:    1.25rem;   /* 20px */
+      --text-2xl:   1.5rem;    /* 24px */
+      --text-3xl:   1.875rem;  /* 30px */
+      --text-4xl:   2.25rem;   /* 36px */
+      --text-5xl:   3rem;      /* 48px */
+      --text-6xl:   3.75rem;   /* 60px */
+      --text-7xl:   4.5rem;    /* 72px */
+      --text-8xl:   6rem;      /* 96px */
+
+      /* Pesos */
+      --weight-light:     300;
+      --weight-regular:   400;
+      --weight-medium:    500;
+      --weight-semibold:  600;
+      --weight-bold:      700;
+      --weight-extrabold: 800;
+      --weight-black:     900;
+
+      /* Line-heights */
+      --leading-tight:    1.1;
+      --leading-snug:     1.3;
+      --leading-normal:   1.5;
+      --leading-relaxed:  1.6;
+      --leading-loose:    1.8;
+
+      /* Letter-spacing */
+      --tracking-tight:   -0.04em;
+      --tracking-snug:    -0.02em;
+      --tracking-normal:   0em;
+      --tracking-wide:     0.05em;
+      --tracking-wider:    0.1em;
+      --tracking-widest:   0.2em;
+
+      /* ============================================================
+         DESIGN TOKENS — ESPAÇAMENTO
+      ============================================================ */
+      --space-1:    0.25rem;   /* 4px  */
+      --space-2:    0.5rem;    /* 8px  */
+      --space-3:    0.75rem;   /* 12px */
+      --space-4:    1rem;      /* 16px */
+      --space-5:    1.25rem;   /* 20px */
+      --space-6:    1.5rem;    /* 24px */
+      --space-8:    2rem;      /* 32px */
+      --space-10:   2.5rem;    /* 40px */
+      --space-12:   3rem;      /* 48px */
+      --space-16:   4rem;      /* 64px */
+      --space-20:   5rem;      /* 80px */
+      --space-24:   6rem;      /* 96px */
+      --space-32:   8rem;      /* 128px */
+
+      /* ============================================================
+         DESIGN TOKENS — LAYOUT
+      ============================================================ */
+      --container-max:     1200px;
+      --container-narrow:  800px;
+      --container-wide:    1440px;
+      --sidebar-width:     220px;
+
+      /* ============================================================
+         DESIGN TOKENS — EFEITOS
+      ============================================================ */
+      --radius-sm:    4px;
+      --radius-md:    8px;
+      --radius-lg:    12px;
+      --radius-xl:    16px;
+      --radius-full:  9999px;
+
+      --shadow-xs:    0 1px 2px rgba(0,0,0,0.05);
+      --shadow-sm:    0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md:    0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-lg:    0 8px 24px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.04);
+      --shadow-xl:    0 16px 48px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.06);
+
+      --transition-fast:   150ms ease;
+      --transition-base:   250ms ease;
+      --transition-slow:   400ms ease;
+      --transition-spring: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* ============================================================
+       LAYOUT — SIDEBAR + MAIN
+    ============================================================ */
+    .ds-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .ds-sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      background: var(--color-black);
+      color: var(--color-white);
+      overflow-y: auto;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-6) 0;
+      scrollbar-width: none;
+    }
+    .ds-sidebar::-webkit-scrollbar { display: none; }
+
+    .ds-sidebar-logo {
+      padding: 0 var(--space-6) var(--space-6);
+      border-bottom: 1px solid var(--color-gray-800);
+      margin-bottom: var(--space-4);
+    }
+
+    .ds-sidebar-label {
+      font-family: var(--font-secondary);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-widest);
+      text-transform: uppercase;
+      color: var(--color-gray-500);
+      padding: 0 var(--space-6);
+      margin-bottom: var(--space-2);
+    }
+
+    .ds-nav-list {
+      list-style: none;
+      margin-bottom: var(--space-6);
+    }
+
+    .ds-nav-list a {
+      display: block;
+      padding: var(--space-2) var(--space-6);
+      font-family: var(--font-primary);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-gray-400);
+      transition: color var(--transition-fast), background var(--transition-fast);
+      border-left: 2px solid transparent;
+    }
+    .ds-nav-list a:hover {
+      color: var(--color-white);
+      background: rgba(255,255,255,0.04);
+      border-left-color: var(--color-blue);
+    }
+    .ds-nav-list a.active {
+      color: var(--color-white);
+      border-left-color: var(--color-blue);
+    }
+
+    .ds-nav-index {
+      font-family: var(--font-secondary);
+      font-size: var(--text-xs);
+      color: var(--color-gray-600);
+      margin-right: var(--space-2);
+    }
+
+    /* Main content */
+    .ds-main {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* ============================================================
+       SEÇÕES
+    ============================================================ */
+    .ds-section {
+      min-height: 100vh;
+      padding: var(--space-24) var(--space-16);
+      border-bottom: 1px solid var(--color-gray-100);
+      scroll-margin-top: 0;
+    }
+
+    .ds-section-header {
+      margin-bottom: var(--space-16);
+    }
+
+    .ds-section-tag {
+      display: inline-block;
+      font-family: var(--font-secondary);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-widest);
+      text-transform: uppercase;
+      color: var(--color-blue);
+      margin-bottom: var(--space-4);
+    }
+
+    .ds-section-title {
+      font-family: var(--font-primary);
+      font-size: var(--text-4xl);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-tight);
+      color: var(--color-black);
+      line-height: var(--leading-tight);
+    }
+
+    .ds-section-desc {
+      margin-top: var(--space-4);
+      font-size: var(--text-lg);
+      color: var(--color-gray-500);
+      max-width: 560px;
+      line-height: var(--leading-relaxed);
+    }
+
+    /* Placeholder */
+    .ds-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      background: var(--color-gray-50);
+      border: 1px dashed var(--color-gray-200);
+      border-radius: var(--radius-md);
+      color: var(--color-gray-400);
+      font-family: var(--font-secondary);
+      font-size: var(--text-sm);
+      letter-spacing: var(--tracking-wide);
+    }
+
+    /* ============================================================
+       COVER — SEÇÃO A
+    ============================================================ */
+    #cover {
+      background: var(--color-black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-24) var(--space-16);
+      position: relative;
+      overflow: hidden;
+      border-bottom: none;
+    }
+
+    #cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(33,118,255,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(33,118,255,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cover-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+      max-width: var(--container-max);
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-left {}
+
+    .cover-logo-wrap {
+      margin-bottom: var(--space-12);
+    }
+
+    .cover-logo-wrap svg {
+      width: 220px;
+      height: auto;
+    }
+
+    .cover-title {
+      font-family: var(--font-primary);
+      font-size: var(--text-7xl);
+      font-weight: var(--weight-black);
+      letter-spacing: var(--tracking-tight);
+      color: var(--color-white);
+      line-height: var(--leading-tight);
+    }
+
+    .cover-title span {
+      color: var(--color-blue);
+    }
+
+    .cover-subtitle {
+      margin-top: var(--space-6);
+      font-size: var(--text-lg);
+      color: var(--color-gray-400);
+      line-height: var(--leading-relaxed);
+      max-width: 480px;
+    }
+
+    .cover-meta {
+      margin-top: var(--space-12);
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .cover-meta-label {
+      font-family: var(--font-secondary);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-widest);
+      text-transform: uppercase;
+      color: var(--color-gray-600);
+    }
+
+    .cover-meta-value {
+      font-family: var(--font-primary);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-gray-300);
+    }
+
+    .cover-divider {
+      width: 1px;
+      height: 32px;
+      background: var(--color-gray-700);
+    }
+
+    .cover-right {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      align-items: flex-end;
+    }
+
+    .cover-nav-preview {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .cover-nav-preview-title {
+      font-family: var(--font-secondary);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-widest);
+      text-transform: uppercase;
+      color: var(--color-gray-500);
+      margin-bottom: var(--space-4);
+    }
+
+    .cover-nav-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .cover-nav-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+      transition: background var(--transition-fast);
+    }
+    .cover-nav-item:hover {
+      background: rgba(255,255,255,0.05);
+      cursor: pointer;
+    }
+
+    .cover-nav-item-index {
+      font-family: var(--font-secondary);
+      font-size: var(--text-xs);
+      color: var(--color-gray-600);
+      min-width: 20px;
+    }
+
+    .cover-nav-item-name {
+      font-family: var(--font-primary);
+      font-size: var(--text-sm);
+      color: var(--color-gray-400);
+    }
+
+    .cover-nav-item-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--color-blue);
+      margin-left: auto;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+    .cover-nav-item:hover .cover-nav-item-dot { opacity: 1; }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      border: 1px solid rgba(33,118,255,0.3);
+      border-radius: var(--radius-full);
+      background: rgba(33,118,255,0.06);
+      margin-bottom: var(--space-8);
+    }
+
+    .cover-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-blue);
+      animation: pulse 2s ease infinite;
+    }
+
+    .cover-badge-text {
+      font-family: var(--font-secondary);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-wide);
+      color: var(--color-blue);
+      text-transform: uppercase;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    /* Linha decorativa */
+    .cover-bottom-line {
+      position: absolute;
+      bottom: 0;
+      left: var(--sidebar-width);
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-blue), transparent);
+      opacity: 0.4;
+    }
+
+    /* ============================================================
+       UTILITÁRIOS
+    ============================================================ */
+    .container {
+      max-width: var(--container-max);
+      width: 100%;
+    }
+
+    /* ============================================================
+       RESPONSIVO
+    ============================================================ */
+    @media (max-width: 1024px) {
+      :root { --sidebar-width: 0px; }
+      .ds-sidebar { display: none; }
+      .ds-main { margin-left: 0; }
+      .ds-section { padding: var(--space-16) var(--space-8); }
+      #cover { padding: var(--space-16) var(--space-8); }
+      .cover-grid { grid-template-columns: 1fr; }
+      .cover-right { display: none; }
+      .cover-title { font-size: var(--text-5xl); }
+    }
+
+    @media (max-width: 640px) {
+      .ds-section { padding: var(--space-12) var(--space-6); }
+      #cover { padding: var(--space-12) var(--space-6); }
+      .cover-title { font-size: var(--text-4xl); }
+    }
+  </style>
+</head>
+
+<body>
+<div class="ds-layout">
+
+  <!-- ======================================================
+       SIDEBAR NAVIGATION
+  ====================================================== -->
+  <aside class="ds-sidebar">
+    <div class="ds-sidebar-logo">
+      <!-- Ativo 17 — ícone branco -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 564.69 565.12" style="width:32px;height:32px;">
+        <path fill="#fff" d="M544.79,73.14c2.24-2.31,4.41-4.62,6.72-6.93,1.47-1.47,2.94-2.94,4.48-4.34l-.11-.11c6.47-6.52,10.01-15.94,8.44-26.15-2.01-13.08-12.91-23.6-26.03-25.28-10.88-1.39-20.64,3.1-26.98,10.58-.88.9-1.76,1.8-2.61,2.7-2.52,2.45-5.04,4.9-7.63,7.28l-.35.42c-.49.42-.91.84-1.33,1.19-89.23,82.32-214.81,103.14-322.41,62.47-3.68-1.39-6.63,3.17-3.85,5.95l72.61,72.61c39.38,4.41,79.26,2.59,118.08-5.46,20.92-4.34,41.48-10.42,61.56-18.4-7.97,19.94-13.99,40.36-18.33,61.21-8.05,38.96-9.86,79.05-5.46,118.5.63,5.74,1.47,11.47,2.38,17.21.98,6.09,2.1,12.17,3.36,18.19l-196.99-196.99L77.01,34.53c-.28-.28-.56-.63-.84-.91l-20.92-20.92c-1.04-.97-2.09-2.02-3.27-2.99C44.95,2.09,34.12-1.97,22.39.95,11.89,3.56,3.43,12.12.89,22.64c-2.92,12.08,1.58,23.12,9.69,30.07,4.17,4.61,8.44,9.16,12.92,13.58l.21.28c4.34,4.27,8.39,8.67,12.38,13.15,107.1,120.25,105.14,303.53-5.81,421.54,1.33-1.33,2.8-2.66,4.2-3.85l-4.13,4.13-.14.14-11.82,11.82.06.06c-7.26,7.18-10.92,18-7.91,29.52,2.65,10.13,10.84,18.33,20.97,20.98,11.52,3.01,22.35-.64,29.52-7.91l.09.09c1.68-1.75,3.36-3.5,5.18-5.32,2.24-2.17,4.55-4.41,6.86-6.58l.7-.7c1.61-1.47,3.29-3.01,4.97-4.55,88.38-79.33,211.07-99.37,316.84-60.36,3.67,1.35,6.59-3.2,3.82-5.97l-71.84-71.84c-38.75-4.27-78-2.45-116.19,5.53-12.17,2.45-24.2,5.6-36.17,9.3-4.27,1.33-8.46,2.73-12.66,4.27-4.41,1.54-8.74,3.15-13.08,4.9,7.83-19.8,13.99-40.15,18.26-60.86,10.49-50.23,10.56-102.2.21-152.43l194.75,194.75,130.46,130.46c3.71,3.22,7.35,6.51,10.84,10l.17-.17c7.38,6.36,17.68,9.45,28.81,6.18,10.06-2.95,18.08-11.27,20.61-21.44,2.94-11.78-1.02-22.71-8.59-29.89-16.35-17.36-30.46-36.12-42.05-55.9-5.88-9.93-11.19-20.22-15.81-30.64-50.16-112.14-31.06-247.64,57.43-341.72l.14-.14Z"/>
+      </svg>
+    </div>
+
+    <span class="ds-sidebar-label">Fundamentos</span>
+    <ul class="ds-nav-list">
+      <li><a href="#cover"><span class="ds-nav-index">A</span> Cover</a></li>
+      <li><a href="#fundamentos"><span class="ds-nav-index">B</span> Fundamentos</a></li>
+    </ul>
+
+    <span class="ds-sidebar-label">Visual</span>
+    <ul class="ds-nav-list">
+      <li><a href="#cores"><span class="ds-nav-index">C</span> Cores</a></li>
+      <li><a href="#tipografia"><span class="ds-nav-index">D</span> Tipografia</a></li>
+      <li><a href="#logo"><span class="ds-nav-index">E</span> Logo</a></li>
+    </ul>
+
+    <span class="ds-sidebar-label">Componentes</span>
+    <ul class="ds-nav-list">
+      <li><a href="#botoes"><span class="ds-nav-index">F</span> Botões</a></li>
+      <li><a href="#inputs"><span class="ds-nav-index">G</span> Inputs</a></li>
+      <li><a href="#cards"><span class="ds-nav-index">H</span> Cards</a></li>
+    </ul>
+
+    <span class="ds-sidebar-label">Sistema</span>
+    <ul class="ds-nav-list">
+      <li><a href="#espacamento"><span class="ds-nav-index">I</span> Espaçamento</a></li>
+      <li><a href="#elementos"><span class="ds-nav-index">J</span> Elementos UI</a></li>
+      <li><a href="#animacoes"><span class="ds-nav-index">K</span> Animações</a></li>
+    </ul>
+
+    <span class="ds-sidebar-label">Landing VIP</span>
+    <ul class="ds-nav-list">
+      <li><a href="#landing"><span class="ds-nav-index">L</span> Componentes VIP</a></li>
+    </ul>
+  </aside>
+
+  <!-- ======================================================
+       MAIN CONTENT
+  ====================================================== -->
+  <main class="ds-main">
+
+    <!-- ====================================================
+         A — COVER
+    ==================================================== -->
+    <section id="cover">
+      <div class="cover-grid">
+        <div class="cover-left">
+          <div class="cover-badge">
+            <span class="cover-badge-dot"></span>
+            <span class="cover-badge-text">Design System v1.0</span>
+          </div>
+
+          <div class="cover-logo-wrap">
+            <!-- Ativo 15 — wordmark branco horizontal -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1890.04 283.77" style="width:200px;height:auto;">
+              <path fill="#fff" d="M481.7,93.04v96.57c0,53.92,38.63,92.54,92.54,92.54h350.06v-64.38h-350.06c-18.51,0-28.17-9.66-28.17-28.16v-16.1h378.22v-64.38h-378.22v-16.09c0-18.51,9.66-28.16,28.17-28.16h350.06V.5h-350.06c-53.92,0-92.54,38.63-92.54,92.54Z"/>
+              <path fill="#fff" d="M1342.79,189.61c0,18.51-9.66,28.16-28.16,28.16h-257.52c-18.51,0-28.17-9.66-28.17-28.16V.5h-64.38v189.11c0,53.92,38.63,92.54,92.54,92.54h257.52c53.92,0,92.54-38.63,92.54-92.54V.5h-64.38v189.11Z"/>
+              <path fill="#fff" d="M1797.49.5h-257.51c-53.92,0-92.54,38.63-92.54,92.54v96.57c0,53.92,38.63,92.54,92.54,92.54h51.1c44.66,0,94.15-20.52,125.94-52.31l22.94-23.34c19.72-19.31,52.31-33,80.07-33h5.64v108.64h64.38V93.04c0-53.92-38.63-92.54-92.54-92.54ZM1825.66,109.14h-5.64c-44.66,0-94.15,20.52-125.94,52.31l-22.93,23.34c-19.72,19.31-52.31,32.99-80.07,32.99h-51.1c-18.51,0-28.17-9.66-28.17-28.16v-96.57c0-18.51,9.65-28.16,28.17-28.16h257.51c18.51,0,28.17,9.65,28.17,28.16v16.09Z"/>
+              <path fill="#fff" d="M368.82,280.04l-81.29-180.53C254.69,25.09,213.98,0,126.1,0H0v283.77h70.82V55.12h55.27c28.73,0,68.09,11.59,92.55,66.99l73,161.67h148.56V1.38h-71.39v278.66Z"/>
+            </svg>
+          </div>
+
+          <h1 class="cover-title">
+            Design<br/>
+            <span>System</span>
+          </h1>
+
+          <p class="cover-subtitle">
+            Referência visual completa da marca Neua — paleta, tipografia, componentes e padrões para a landing page do Grupo VIP.
+          </p>
+
+          <div class="cover-meta">
+            <div class="cover-meta-item">
+              <span class="cover-meta-label">Versão</span>
+              <span class="cover-meta-value">1.0.0</span>
+            </div>
+            <div class="cover-divider"></div>
+            <div class="cover-meta-item">
+              <span class="cover-meta-label">Data</span>
+              <span class="cover-meta-value">Abril 2026</span>
+            </div>
+            <div class="cover-divider"></div>
+            <div class="cover-meta-item">
+              <span class="cover-meta-label">Produto</span>
+              <span class="cover-meta-value">Landing VIP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cover-right">
+          <div class="cover-nav-preview">
+            <p class="cover-nav-preview-title">Conteúdo</p>
+            <ul class="cover-nav-items">
+              <li class="cover-nav-item"><span class="cover-nav-item-index">A</span><span class="cover-nav-item-name">Cover</span><span class="cover-nav-item-dot"></span></li>
+              <li class="cover-nav-item"><span class="cover-nav-item-index">B</span><span class="cover-nav-item-name">Fundamentos</span><span class="cover-nav-item-dot"></span></li>
+              <li class="cover-nav-item"><span class="cover-nav-item-index">C</span><span class="cover-nav-item-name">Cores</span><span class="cover-nav-item-dot"></span></li>
+              <li class="cover-nav-item"><span class="cover-nav-item-index">D</span><span class="cover-nav-item-name">Tipografia</span><span class="cover-nav-item-dot"></span></li>
+              <li class="cover-nav-item"><span class="cover-nav-item-index">E</span><span class="cover-nav-item-name">Logo</span><span class="cover-nav-item-dot"></span></li>
+              <li class="cover-nav-item"><span class="cover-nav-item-index">F</span><span class="cover-nav-item-name">Botões</span><span class="cover-nav-item-dot"></span></li>
+              <li class="cover-nav-item"><span class="cover-nav-item-index">G</span><span class="cover-nav-item-name">Inputs &amp; Formulários</span><span class="cover-nav-item-dot"></span></li>
+              <li class="cover-nav-item"><span class="cover-nav-item-index">H</span><span class="cover-nav-item-name">Cards</span><span class="cover-nav-item-dot"></span></li>
+              <li class="cover-nav-item"><span class="cover-nav-item-index">I</span><span class="cover-nav-item-name">Espaçamento &amp; Grid</span><span class="cover-nav-item-dot"></span></li>
+              <li class="cover-nav-item"><span class="cover-nav-item-index">J</span><span class="cover-nav-item-name">Elementos UI</span><span class="cover-nav-item-dot"></span></li>
+              <li class="cover-nav-item"><span class="cover-nav-item-index">K</span><span class="cover-nav-item-name">Animações</span><span class="cover-nav-item-dot"></span></li>
+              <li class="cover-nav-item"><span class="cover-nav-item-index">L</span><span class="cover-nav-item-name">Componentes VIP</span><span class="cover-nav-item-dot"></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-bottom-line"></div>
+    </section>
+
+    <!-- ====================================================
+         B — FUNDAMENTOS
+    ==================================================== -->
+    <section id="fundamentos" class="ds-section">
+      <div class="ds-section-header">
+        <span class="ds-section-tag">B — Fundamentos</span>
+        <h2 class="ds-section-title">Filosofia &amp; Regras</h2>
+        <p class="ds-section-desc">Os princípios que guiam cada decisão visual da marca Neua — o que fazer, o que preservar e o que nunca fazer.</p>
+      </div>
+
+      <!-- Filosofia -->
+      <div class="fund-block">
+        <h3 class="fund-block-title">Filosofia da marca</h3>
+        <div class="fund-pillars">
+          <div class="fund-pillar">
+            <div class="fund-pillar-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            </div>
+            <h4 class="fund-pillar-name">Premium</h4>
+            <p class="fund-pillar-desc">Cada elemento deve transmitir qualidade. Prefira menos com mais refinamento — nunca excessos visuais. O espaço em branco é um ativo, não um vazio.</p>
+          </div>
+          <div class="fund-pillar">
+            <div class="fund-pillar-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <h4 class="fund-pillar-name">Minimalista</h4>
+            <p class="fund-pillar-desc">Remova tudo que não serve ao objetivo. A forma segue a função — mas sem abrir mão da elegância. Hierarquia clara, ruído zero.</p>
+          </div>
+          <div class="fund-pillar">
+            <div class="fund-pillar-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h4 class="fund-pillar-name">Confiança</h4>
+            <p class="fund-pillar-desc">A paleta preto &amp; branco transmite autoridade e clareza. O azul Neua aparece cirurgicamente para sinalizar ação — nunca como decoração.</p>
+          </div>
+          <div class="fund-pillar">
+            <div class="fund-pillar-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h4 class="fund-pillar-name">Exclusividade</h4>
+            <p class="fund-pillar-desc">A marca fala com quem já reconhece valor. O design nunca precisa gritar — ele convida. Tom direto, propostas claras, zero apelo ao medo.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Referências visuais -->
+      <div class="fund-block">
+        <h3 class="fund-block-title">Referências de estética</h3>
+        <div class="fund-refs">
+          <div class="fund-ref fund-ref--yes">
+            <div class="fund-ref-label fund-ref-label--yes">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Referências corretas
+            </div>
+            <ul class="fund-ref-list">
+              <li>Apple — espaços generosos, tipografia limpa, foco no produto</li>
+              <li>Linear — precisão, minimalismo técnico, preto como base</li>
+              <li>Stripe — hierarquia impecável, micro-copy refinado</li>
+              <li>Notion — cards limpos, espaçamento consistente</li>
+              <li>Vercel — interface dark premium, azul elétrico pontual</li>
+            </ul>
+          </div>
+          <div class="fund-ref fund-ref--no">
+            <div class="fund-ref-label fund-ref-label--no">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              O que não é Neua
+            </div>
+            <ul class="fund-ref-list">
+              <li>Fontes serifadas em qualquer contexto</li>
+              <li>Verde escuro ou paletas da campanha "Home Sweet Office"</li>
+              <li>Gradientes excessivos ou efeitos glassmorphism pesados</li>
+              <li>Excesso de cor azul (nunca em fundos grandes)</li>
+              <li>Sombras dramáticas, neomorfismo ou skeuomorfismo</li>
+              <li>Múltiplas cores de destaque competindo entre si</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regras de uso -->
+      <div class="fund-block">
+        <h3 class="fund-block-title">Regras obrigatórias</h3>
+        <div class="fund-rules">
+
+          <div class="fund-rule">
+            <div class="fund-rule-head">
+              <span class="fund-rule-badge fund-rule-badge--type">Tipografia</span>
+              <span class="fund-rule-badge fund-rule-badge--critical">Crítico</span>
+            </div>
+            <p class="fund-rule-text"><strong>Inter Tight</strong> é a fonte principal — títulos, textos, CTAs, toda interface. <strong>Space Grotesk</strong> é pontual: tags, labels, números, microtextos. Nunca use fontes serifadas em nenhuma hipótese.</p>
+          </div>
+
+          <div class="fund-rule">
+            <div class="fund-rule-head">
+              <span class="fund-rule-badge fund-rule-badge--type">Cor</span>
+              <span class="fund-rule-badge fund-rule-badge--critical">Crítico</span>
+            </div>
+            <p class="fund-rule-text">A base é <strong>preto &amp; branco</strong>. O azul <strong>#2176ff</strong> é reservado para botões primários, ícones pontuais e detalhes de destaque. Nunca aplique o azul em blocos grandes, fundos de seção ou decoração.</p>
+          </div>
+
+          <div class="fund-rule">
+            <div class="fund-rule-head">
+              <span class="fund-rule-badge fund-rule-badge--type">Espaço</span>
+              <span class="fund-rule-badge fund-rule-badge--important">Importante</span>
+            </div>
+            <p class="fund-rule-text">Use o espaço em branco generosamente. O mínimo entre seções é <strong>96px</strong>. Nunca comprima elementos para caber mais conteúdo — prefira paginar ou ocultar.</p>
+          </div>
+
+          <div class="fund-rule">
+            <div class="fund-rule-head">
+              <span class="fund-rule-badge fund-rule-badge--type">Hierarquia</span>
+              <span class="fund-rule-badge fund-rule-badge--important">Importante</span>
+            </div>
+            <p class="fund-rule-text">Cada página deve ter <strong>um único elemento mais importante</strong>. Não compita por atenção. Reduza o peso visual dos elementos secundários usando cor cinza e tamanho menor — nunca negrito adicional.</p>
+          </div>
+
+          <div class="fund-rule">
+            <div class="fund-rule-head">
+              <span class="fund-rule-badge fund-rule-badge--type">Animações</span>
+              <span class="fund-rule-badge fund-rule-badge--guide">Guia</span>
+            </div>
+            <p class="fund-rule-text">Transições devem ser <strong>sutis e funcionais</strong>. Duração máxima de 400ms. Easing preferido: <code>ease</code> para hover, <code>cubic-bezier(0.34, 1.56, 0.64, 1)</code> para entradas com spring. Nunca use animações que distraiam do conteúdo.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Resumo visual — do/don't -->
+      <div class="fund-block">
+        <h3 class="fund-block-title">Resumo visual</h3>
+        <div class="fund-summary">
+          <div class="fund-summary-col">
+            <div class="fund-summary-header fund-summary-header--do">Fazer</div>
+            <ul class="fund-summary-list fund-summary-list--do">
+              <li>Espaço em branco abundante</li>
+              <li>Hierarquia tipográfica clara</li>
+              <li>Preto como base, branco como respiro</li>
+              <li>Azul apenas em ações e destaques pontuais</li>
+              <li>Cinzas para criar profundidade</li>
+              <li>Bordas finas e sutis</li>
+              <li>Sombras leves e difusas</li>
+              <li>Ícones stroke (linha), não filled</li>
+            </ul>
+          </div>
+          <div class="fund-summary-col">
+            <div class="fund-summary-header fund-summary-header--dont">Não fazer</div>
+            <ul class="fund-summary-list fund-summary-list--dont">
+              <li>Serifadas em qualquer contexto</li>
+              <li>Verde escuro ou tons terrosos</li>
+              <li>Azul em blocos grandes</li>
+              <li>Múltiplas cores competindo</li>
+              <li>Sombras dramáticas ou coloridas</li>
+              <li>Gradientes excessivos</li>
+              <li>Animações longas ou chamativas</li>
+              <li>Bordas grossas ou decorativas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        /* Fundamentos — estilos locais */
+        .fund-block {
+          margin-bottom: var(--space-16);
+        }
+        .fund-block-title {
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          font-weight: var(--weight-semibold);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          color: var(--color-gray-400);
+          margin-bottom: var(--space-6);
+          padding-bottom: var(--space-4);
+          border-bottom: 1px solid var(--color-gray-100);
+        }
+
+        /* Pilares */
+        .fund-pillars {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: var(--space-4);
+        }
+        .fund-pillar {
+          padding: var(--space-6);
+          border: 1px solid var(--color-gray-100);
+          border-radius: var(--radius-lg);
+          background: var(--color-white);
+          transition: box-shadow var(--transition-base), border-color var(--transition-base);
+        }
+        .fund-pillar:hover {
+          box-shadow: var(--shadow-md);
+          border-color: var(--color-gray-200);
+        }
+        .fund-pillar-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: var(--radius-md);
+          background: var(--color-gray-50);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--color-blue);
+          margin-bottom: var(--space-4);
+        }
+        .fund-pillar-name {
+          font-family: var(--font-primary);
+          font-size: var(--text-base);
+          font-weight: var(--weight-semibold);
+          color: var(--color-black);
+          margin-bottom: var(--space-2);
+        }
+        .fund-pillar-desc {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          color: var(--color-gray-500);
+          line-height: var(--leading-relaxed);
+        }
+
+        /* Refs */
+        .fund-refs {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-4);
+        }
+        .fund-ref {
+          padding: var(--space-6);
+          border-radius: var(--radius-lg);
+        }
+        .fund-ref--yes { background: #f0faf4; border: 1px solid #c3e6cb; }
+        .fund-ref--no  { background: #fff5f5; border: 1px solid #f5c6cb; }
+        .fund-ref-label {
+          display: flex;
+          align-items: center;
+          gap: var(--space-2);
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          font-weight: var(--weight-semibold);
+          margin-bottom: var(--space-4);
+        }
+        .fund-ref-label--yes { color: #1e7e34; }
+        .fund-ref-label--no  { color: #c0392b; }
+        .fund-ref-list {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-2);
+        }
+        .fund-ref-list li {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          color: var(--color-gray-600);
+          padding-left: var(--space-4);
+          position: relative;
+          line-height: var(--leading-relaxed);
+        }
+        .fund-ref--yes .fund-ref-list li::before { content: '–'; position: absolute; left: 0; color: #1e7e34; }
+        .fund-ref--no  .fund-ref-list li::before { content: '×'; position: absolute; left: 0; color: #c0392b; font-weight: 700; }
+
+        /* Regras */
+        .fund-rules {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-3);
+        }
+        .fund-rule {
+          padding: var(--space-5) var(--space-6);
+          border: 1px solid var(--color-gray-100);
+          border-radius: var(--radius-md);
+          background: var(--color-white);
+        }
+        .fund-rule-head {
+          display: flex;
+          align-items: center;
+          gap: var(--space-2);
+          margin-bottom: var(--space-3);
+        }
+        .fund-rule-badge {
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          font-weight: var(--weight-semibold);
+          letter-spacing: var(--tracking-wider);
+          text-transform: uppercase;
+          padding: 2px 8px;
+          border-radius: var(--radius-full);
+        }
+        .fund-rule-badge--type     { background: var(--color-gray-100); color: var(--color-gray-600); }
+        .fund-rule-badge--critical { background: #fdecea; color: #c0392b; }
+        .fund-rule-badge--important{ background: #fff8e1; color: #b8860b; }
+        .fund-rule-badge--guide    { background: var(--color-blue-light); color: var(--color-blue); }
+        .fund-rule-text {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          color: var(--color-gray-600);
+          line-height: var(--leading-relaxed);
+        }
+        .fund-rule-text strong { color: var(--color-black); font-weight: var(--weight-semibold); }
+        .fund-rule-text code {
+          font-family: monospace;
+          font-size: 12px;
+          background: var(--color-gray-100);
+          padding: 2px 6px;
+          border-radius: 4px;
+          color: var(--color-gray-700);
+        }
+
+        /* Resumo */
+        .fund-summary {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          border: 1px solid var(--color-gray-200);
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+        }
+        .fund-summary-col { padding: var(--space-6); }
+        .fund-summary-col:first-child { border-right: 1px solid var(--color-gray-200); }
+        .fund-summary-header {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          font-weight: var(--weight-bold);
+          letter-spacing: var(--tracking-wide);
+          text-transform: uppercase;
+          margin-bottom: var(--space-5);
+          padding-bottom: var(--space-3);
+          border-bottom: 2px solid currentColor;
+        }
+        .fund-summary-header--do   { color: #1e7e34; }
+        .fund-summary-header--dont { color: #c0392b; }
+        .fund-summary-list {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-3);
+        }
+        .fund-summary-list li {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          color: var(--color-gray-600);
+          padding-left: var(--space-5);
+          position: relative;
+          line-height: var(--leading-normal);
+        }
+        .fund-summary-list--do   li::before { content: '✓'; position: absolute; left: 0; color: #1e7e34; font-weight: 700; }
+        .fund-summary-list--dont li::before { content: '✕'; position: absolute; left: 0; color: #c0392b; font-weight: 700; }
+
+        @media (max-width: 1200px) {
+          .fund-pillars { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+          .fund-pillars { grid-template-columns: 1fr; }
+          .fund-refs    { grid-template-columns: 1fr; }
+          .fund-summary { grid-template-columns: 1fr; }
+          .fund-summary-col:first-child { border-right: none; border-bottom: 1px solid var(--color-gray-200); }
+        }
+      </style>
+    </section>
+
+    <!-- ====================================================
+         C — CORES
+    ==================================================== -->
+    <section id="cores" class="ds-section">
+      <div class="ds-section-header">
+        <span class="ds-section-tag">C — Cores</span>
+        <h2 class="ds-section-title">Paleta de Cores</h2>
+        <p class="ds-section-desc">Base preto &amp; branco com azul de destaque pontual. Cinzas para hierarquia. Estados funcionais mantendo a estética minimalista.</p>
+      </div>
+
+      <!-- Base -->
+      <div class="cor-block">
+        <h3 class="cor-block-title">Cores base</h3>
+        <div class="cor-row cor-row--base">
+          <div class="cor-swatch-lg" style="background:#141414;">
+            <div class="cor-swatch-info cor-swatch-info--light">
+              <span class="cor-swatch-name">Black</span>
+              <span class="cor-swatch-hex">#141414</span>
+              <span class="cor-swatch-use">Texto principal, fundos dark, logo</span>
+            </div>
+          </div>
+          <div class="cor-swatch-lg" style="background:#ffffff; border:1px solid #e4e4e4;">
+            <div class="cor-swatch-info">
+              <span class="cor-swatch-name">White</span>
+              <span class="cor-swatch-hex">#ffffff</span>
+              <span class="cor-swatch-use">Fundo padrão, texto em dark, cards</span>
+            </div>
+          </div>
+          <div class="cor-swatch-lg" style="background:#2176ff;">
+            <div class="cor-swatch-info cor-swatch-info--light">
+              <span class="cor-swatch-name">Blue — Neua</span>
+              <span class="cor-swatch-hex">#2176ff</span>
+              <span class="cor-swatch-use">CTA primário, ícones, destaques pontuais</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Escala de cinzas -->
+      <div class="cor-block">
+        <h3 class="cor-block-title">Escala de cinzas</h3>
+        <div class="cor-row cor-row--grays">
+          <div class="cor-swatch-sm" style="background:#f7f7f7; border:1px solid #e4e4e4;">
+            <div class="cor-chip-info">
+              <span class="cor-chip-name">Gray 50</span>
+              <span class="cor-chip-hex">#f7f7f7</span>
+              <span class="cor-chip-use">Fundos de seção, hover sutil</span>
+            </div>
+          </div>
+          <div class="cor-swatch-sm" style="background:#f0f0f0; border:1px solid #e4e4e4;">
+            <div class="cor-chip-info">
+              <span class="cor-chip-name">Gray 100</span>
+              <span class="cor-chip-hex">#f0f0f0</span>
+              <span class="cor-chip-use">Fundos de inputs, disabled bg</span>
+            </div>
+          </div>
+          <div class="cor-swatch-sm" style="background:#e4e4e4;">
+            <div class="cor-chip-info">
+              <span class="cor-chip-name">Gray 200</span>
+              <span class="cor-chip-hex">#e4e4e4</span>
+              <span class="cor-chip-use">Bordas padrão, dividers</span>
+            </div>
+          </div>
+          <div class="cor-swatch-sm" style="background:#d0d0d0;">
+            <div class="cor-chip-info">
+              <span class="cor-chip-name">Gray 300</span>
+              <span class="cor-chip-hex">#d0d0d0</span>
+              <span class="cor-chip-use">Placeholders, bordas de inputs</span>
+            </div>
+          </div>
+          <div class="cor-swatch-sm" style="background:#b0b0b0;">
+            <div class="cor-chip-info">
+              <span class="cor-chip-name">Gray 400</span>
+              <span class="cor-chip-hex">#b0b0b0</span>
+              <span class="cor-chip-use">Texto disabled, ícones inativos</span>
+            </div>
+          </div>
+          <div class="cor-swatch-sm" style="background:#888888;">
+            <div class="cor-chip-info cor-chip-info--light">
+              <span class="cor-chip-name">Gray 500</span>
+              <span class="cor-chip-hex">#888888</span>
+              <span class="cor-chip-use">Texto secundário, descrições</span>
+            </div>
+          </div>
+          <div class="cor-swatch-sm" style="background:#5c5c5c;">
+            <div class="cor-chip-info cor-chip-info--light">
+              <span class="cor-chip-name">Gray 600</span>
+              <span class="cor-chip-hex">#5c5c5c</span>
+              <span class="cor-chip-use">Texto de suporte, captions</span>
+            </div>
+          </div>
+          <div class="cor-swatch-sm" style="background:#3a3a3a;">
+            <div class="cor-chip-info cor-chip-info--light">
+              <span class="cor-chip-name">Gray 700</span>
+              <span class="cor-chip-hex">#3a3a3a</span>
+              <span class="cor-chip-use">Divisórias em dark, nav sidebar</span>
+            </div>
+          </div>
+          <div class="cor-swatch-sm" style="background:#262626;">
+            <div class="cor-chip-info cor-chip-info--light">
+              <span class="cor-chip-name">Gray 800</span>
+              <span class="cor-chip-hex">#262626</span>
+              <span class="cor-chip-use">Itens de menu dark, cards dark</span>
+            </div>
+          </div>
+          <div class="cor-swatch-sm" style="background:#1a1a1a;">
+            <div class="cor-chip-info cor-chip-info--light">
+              <span class="cor-chip-name">Gray 900</span>
+              <span class="cor-chip-hex">#1a1a1a</span>
+              <span class="cor-chip-use">Fundos dark profundos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Variações do azul -->
+      <div class="cor-block">
+        <h3 class="cor-block-title">Variações do azul Neua</h3>
+        <div class="cor-row cor-row--blues">
+          <div class="cor-swatch-md" style="background:#e8f0ff; border:1px solid #c5d8ff;">
+            <div class="cor-chip-info">
+              <span class="cor-chip-name">Blue Light</span>
+              <span class="cor-chip-hex">#e8f0ff</span>
+              <span class="cor-chip-use">Fundo de badges, hover sutil</span>
+            </div>
+          </div>
+          <div class="cor-swatch-md" style="background:#2176ff;">
+            <div class="cor-chip-info cor-chip-info--light">
+              <span class="cor-chip-name">Blue — Base</span>
+              <span class="cor-chip-hex">#2176ff</span>
+              <span class="cor-chip-use">CTA, ícones, destaques</span>
+            </div>
+          </div>
+          <div class="cor-swatch-md" style="background:#1a5fd9;">
+            <div class="cor-chip-info cor-chip-info--light">
+              <span class="cor-chip-name">Blue Hover</span>
+              <span class="cor-chip-hex">#1a5fd9</span>
+              <span class="cor-chip-use">Estado hover de botões primários</span>
+            </div>
+          </div>
+          <div class="cor-swatch-md" style="background:#1248a8;">
+            <div class="cor-chip-info cor-chip-info--light">
+              <span class="cor-chip-name">Blue Active</span>
+              <span class="cor-chip-hex">#1248a8</span>
+              <span class="cor-chip-use">Estado active/pressed</span>
+            </div>
+          </div>
+          <div class="cor-swatch-md" style="background:#b0c9ff; border:1px solid #e4e4e4;">
+            <div class="cor-chip-info">
+              <span class="cor-chip-name">Blue Disabled</span>
+              <span class="cor-chip-hex">#b0c9ff</span>
+              <span class="cor-chip-use">Botão primário desabilitado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estados funcionais -->
+      <div class="cor-block">
+        <h3 class="cor-block-title">Estados funcionais</h3>
+        <div class="cor-row cor-row--states">
+          <div class="cor-state-card">
+            <div class="cor-state-pair">
+              <div class="cor-state-chip" style="background:#e53935;"></div>
+              <div class="cor-state-chip" style="background:#fdecea; border:1px solid #f5c6cb;"></div>
+            </div>
+            <div class="cor-state-info">
+              <span class="cor-state-label">Erro</span>
+              <span class="cor-state-hexes">#e53935 / #fdecea</span>
+              <span class="cor-state-use">Validação de campos, mensagens de erro</span>
+            </div>
+          </div>
+          <div class="cor-state-card">
+            <div class="cor-state-pair">
+              <div class="cor-state-chip" style="background:#1e7e34;"></div>
+              <div class="cor-state-chip" style="background:#e6f4ea; border:1px solid #c3e6cb;"></div>
+            </div>
+            <div class="cor-state-info">
+              <span class="cor-state-label">Sucesso</span>
+              <span class="cor-state-hexes">#1e7e34 / #e6f4ea</span>
+              <span class="cor-state-use">Confirmação de envio, feedback positivo</span>
+            </div>
+          </div>
+          <div class="cor-state-card">
+            <div class="cor-state-pair">
+              <div class="cor-state-chip" style="background:#b8860b;"></div>
+              <div class="cor-state-chip" style="background:#fff8e1; border:1px solid #ffe082;"></div>
+            </div>
+            <div class="cor-state-info">
+              <span class="cor-state-label">Aviso</span>
+              <span class="cor-state-hexes">#b8860b / #fff8e1</span>
+              <span class="cor-state-use">Alertas, informações pendentes</span>
+            </div>
+          </div>
+          <div class="cor-state-card">
+            <div class="cor-state-pair">
+              <div class="cor-state-chip" style="background:#b0b0b0;"></div>
+              <div class="cor-state-chip" style="background:#f0f0f0; border:1px solid #e4e4e4;"></div>
+            </div>
+            <div class="cor-state-info">
+              <span class="cor-state-label">Desabilitado</span>
+              <span class="cor-state-hexes">#b0b0b0 / #f0f0f0</span>
+              <span class="cor-state-use">Inputs, botões e controles inativos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Combinações aprovadas -->
+      <div class="cor-block">
+        <h3 class="cor-block-title">Combinações aprovadas</h3>
+        <div class="cor-combos">
+          <div class="cor-combo" style="background:#141414;">
+            <span class="cor-combo-label" style="color:#ffffff;">Texto branco</span>
+            <span class="cor-combo-sub" style="color:#888888;">sobre preto</span>
+            <span class="cor-combo-tag" style="color:#2176ff;">AAA</span>
+          </div>
+          <div class="cor-combo" style="background:#ffffff; border:1px solid #e4e4e4;">
+            <span class="cor-combo-label" style="color:#141414;">Texto preto</span>
+            <span class="cor-combo-sub" style="color:#888888;">sobre branco</span>
+            <span class="cor-combo-tag" style="color:#2176ff;">AAA</span>
+          </div>
+          <div class="cor-combo" style="background:#2176ff;">
+            <span class="cor-combo-label" style="color:#ffffff;">Texto branco</span>
+            <span class="cor-combo-sub" style="color:rgba(255,255,255,0.7);">sobre azul</span>
+            <span class="cor-combo-tag" style="color:#ffffff; border-color:rgba(255,255,255,0.4);">AA</span>
+          </div>
+          <div class="cor-combo" style="background:#f7f7f7; border:1px solid #e4e4e4;">
+            <span class="cor-combo-label" style="color:#141414;">Texto preto</span>
+            <span class="cor-combo-sub" style="color:#888888;">sobre gray 50</span>
+            <span class="cor-combo-tag" style="color:#2176ff;">AAA</span>
+          </div>
+          <div class="cor-combo cor-combo--no" style="background:#2176ff;">
+            <span class="cor-combo-label" style="color:#141414;">Texto preto</span>
+            <span class="cor-combo-sub" style="color:rgba(0,0,0,0.5);">sobre azul</span>
+            <span class="cor-combo-badge-no">Evitar</span>
+          </div>
+          <div class="cor-combo cor-combo--no" style="background:#888888;">
+            <span class="cor-combo-label" style="color:#ffffff;">Texto branco</span>
+            <span class="cor-combo-sub" style="color:rgba(255,255,255,0.6);">sobre gray 500</span>
+            <span class="cor-combo-badge-no">Evitar</span>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        /* Cores — estilos locais */
+        .cor-block {
+          margin-bottom: var(--space-16);
+        }
+        .cor-block-title {
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          font-weight: var(--weight-semibold);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          color: var(--color-gray-400);
+          margin-bottom: var(--space-6);
+          padding-bottom: var(--space-4);
+          border-bottom: 1px solid var(--color-gray-100);
+        }
+
+        /* Row base */
+        .cor-row { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+
+        /* Swatches grandes (base) */
+        .cor-swatch-lg {
+          flex: 1;
+          min-width: 200px;
+          height: 160px;
+          border-radius: var(--radius-lg);
+          padding: var(--space-5);
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          position: relative;
+          overflow: hidden;
+          transition: transform var(--transition-base);
+        }
+        .cor-swatch-lg:hover { transform: translateY(-2px); }
+
+        .cor-swatch-info {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+        .cor-swatch-name {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          font-weight: var(--weight-semibold);
+          color: var(--color-black);
+        }
+        .cor-swatch-hex {
+          font-family: var(--font-secondary);
+          font-size: var(--text-xs);
+          color: var(--color-gray-500);
+          letter-spacing: var(--tracking-wide);
+        }
+        .cor-swatch-use {
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          color: var(--color-gray-400);
+          margin-top: 2px;
+        }
+        .cor-swatch-info--light .cor-swatch-name { color: #ffffff; }
+        .cor-swatch-info--light .cor-swatch-hex  { color: rgba(255,255,255,0.6); }
+        .cor-swatch-info--light .cor-swatch-use  { color: rgba(255,255,255,0.5); }
+
+        /* Swatches pequenos (cinzas) */
+        .cor-row--grays { gap: var(--space-2); }
+        .cor-swatch-sm {
+          flex: 1;
+          min-width: 80px;
+          height: 100px;
+          border-radius: var(--radius-md);
+          position: relative;
+          overflow: hidden;
+          cursor: default;
+          transition: transform var(--transition-base);
+        }
+        .cor-swatch-sm:hover { transform: translateY(-2px); }
+
+        /* Swatches médios (azuis) */
+        .cor-row--blues { gap: var(--space-3); }
+        .cor-swatch-md {
+          flex: 1;
+          min-width: 140px;
+          height: 120px;
+          border-radius: var(--radius-lg);
+          padding: var(--space-4);
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          transition: transform var(--transition-base);
+        }
+        .cor-swatch-md:hover { transform: translateY(-2px); }
+
+        /* Chip info (aparece no hover) */
+        .cor-chip-info {
+          position: absolute;
+          bottom: 0; left: 0; right: 0;
+          background: rgba(255,255,255,0.92);
+          padding: var(--space-2) var(--space-3);
+          display: flex;
+          flex-direction: column;
+          gap: 1px;
+          transform: translateY(100%);
+          transition: transform var(--transition-base);
+          backdrop-filter: blur(4px);
+        }
+        .cor-swatch-sm:hover .cor-chip-info { transform: translateY(0); }
+
+        .cor-chip-info--light {
+          background: rgba(20,20,20,0.88);
+        }
+        .cor-chip-name {
+          font-family: var(--font-primary);
+          font-size: 11px;
+          font-weight: var(--weight-semibold);
+          color: var(--color-black);
+        }
+        .cor-chip-hex {
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          color: var(--color-gray-500);
+          letter-spacing: var(--tracking-wide);
+        }
+        .cor-chip-use {
+          font-family: var(--font-primary);
+          font-size: 10px;
+          color: var(--color-gray-400);
+        }
+        .cor-chip-info--light .cor-chip-name { color: #ffffff; }
+        .cor-chip-info--light .cor-chip-hex  { color: rgba(255,255,255,0.5); }
+        .cor-chip-info--light .cor-chip-use  { color: rgba(255,255,255,0.4); }
+
+        /* Azuis — info visível direto */
+        .cor-swatch-md .cor-chip-info {
+          position: static;
+          background: transparent;
+          padding: 0;
+          transform: none;
+        }
+        .cor-swatch-md .cor-chip-info--light .cor-chip-name { color: #fff; }
+        .cor-swatch-md .cor-chip-info--light .cor-chip-hex  { color: rgba(255,255,255,0.6); }
+        .cor-swatch-md .cor-chip-info--light .cor-chip-use  { color: rgba(255,255,255,0.45); }
+
+        /* Estados */
+        .cor-row--states { gap: var(--space-4); }
+        .cor-state-card {
+          flex: 1;
+          min-width: 200px;
+          padding: var(--space-5);
+          border: 1px solid var(--color-gray-100);
+          border-radius: var(--radius-lg);
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-4);
+          background: var(--color-white);
+          transition: box-shadow var(--transition-base);
+        }
+        .cor-state-card:hover { box-shadow: var(--shadow-md); }
+        .cor-state-pair {
+          display: flex;
+          gap: var(--space-2);
+        }
+        .cor-state-chip {
+          width: 40px;
+          height: 40px;
+          border-radius: var(--radius-md);
+        }
+        .cor-state-info {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+        .cor-state-label {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          font-weight: var(--weight-semibold);
+          color: var(--color-black);
+        }
+        .cor-state-hexes {
+          font-family: var(--font-secondary);
+          font-size: var(--text-xs);
+          color: var(--color-gray-500);
+          letter-spacing: var(--tracking-wide);
+        }
+        .cor-state-use {
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          color: var(--color-gray-400);
+          line-height: var(--leading-relaxed);
+        }
+
+        /* Combinações */
+        .cor-combos {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--space-4);
+        }
+        .cor-combo {
+          border-radius: var(--radius-lg);
+          padding: var(--space-6);
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-1);
+          min-height: 120px;
+          justify-content: center;
+          position: relative;
+        }
+        .cor-combo-label {
+          font-family: var(--font-primary);
+          font-size: var(--text-base);
+          font-weight: var(--weight-semibold);
+        }
+        .cor-combo-sub {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+        }
+        .cor-combo-tag {
+          position: absolute;
+          top: var(--space-4);
+          right: var(--space-4);
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          font-weight: var(--weight-bold);
+          letter-spacing: var(--tracking-widest);
+          border: 1px solid currentColor;
+          padding: 2px 6px;
+          border-radius: var(--radius-full);
+        }
+        .cor-combo-badge-no {
+          position: absolute;
+          top: var(--space-4);
+          right: var(--space-4);
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          font-weight: var(--weight-bold);
+          letter-spacing: var(--tracking-widest);
+          background: rgba(229,57,53,0.15);
+          color: #e53935;
+          padding: 2px 8px;
+          border-radius: var(--radius-full);
+        }
+
+        @media (max-width: 900px) {
+          .cor-combos { grid-template-columns: repeat(2, 1fr); }
+          .cor-row--blues .cor-swatch-md { min-width: 120px; }
+        }
+        @media (max-width: 640px) {
+          .cor-swatch-lg { min-width: 100%; }
+          .cor-swatch-sm { min-width: 60px; height: 80px; }
+          .cor-combos { grid-template-columns: 1fr 1fr; }
+          .cor-row--states { flex-direction: column; }
+        }
+      </style>
+    </section>
+
+    <!-- ====================================================
+         D — TIPOGRAFIA
+    ==================================================== -->
+    <section id="tipografia" class="ds-section">
+      <div class="ds-section-header">
+        <span class="ds-section-tag">D — Tipografia</span>
+        <h2 class="ds-section-title">Tipografia</h2>
+        <p class="ds-section-desc">Inter Tight como fonte principal em toda a interface. Space Grotesk reservada para detalhes pontuais — nunca como fonte de corpo ou títulos.</p>
+      </div>
+
+      <!-- Fontes -->
+      <div class="tip-block">
+        <h3 class="tip-block-title">Fontes da marca</h3>
+        <div class="tip-fonts-row">
+          <div class="tip-font-card tip-font-card--primary">
+            <div class="tip-font-specimen">Aa</div>
+            <div class="tip-font-meta">
+              <div class="tip-font-name">Inter Tight</div>
+              <div class="tip-font-role">
+                <span class="tip-font-badge tip-font-badge--primary">Principal</span>
+              </div>
+              <p class="tip-font-desc">Fonte principal da marca. Usada em títulos, textos de corpo, botões, labels e toda interface. Variável, com excelente legibilidade em qualquer tamanho.</p>
+              <div class="tip-font-weights">
+                <span style="font-weight:300">Light</span>
+                <span style="font-weight:400">Regular</span>
+                <span style="font-weight:500">Medium</span>
+                <span style="font-weight:600">Semibold</span>
+                <span style="font-weight:700">Bold</span>
+                <span style="font-weight:800">Extrabold</span>
+                <span style="font-weight:900">Black</span>
+              </div>
+            </div>
+          </div>
+          <div class="tip-font-card tip-font-card--secondary">
+            <div class="tip-font-specimen" style="font-family:'Space Grotesk',sans-serif;">Aa</div>
+            <div class="tip-font-meta">
+              <div class="tip-font-name" style="font-family:'Space Grotesk',sans-serif;">Space Grotesk</div>
+              <div class="tip-font-role">
+                <span class="tip-font-badge tip-font-badge--secondary">Pontual</span>
+              </div>
+              <p class="tip-font-desc">Uso restrito a: tags, badges, labels técnicos, números em destaque e microtextos de interface. Nunca usar em títulos, corpo ou CTAs.</p>
+              <div class="tip-font-weights" style="font-family:'Space Grotesk',sans-serif;">
+                <span style="font-weight:300">Light</span>
+                <span style="font-weight:400">Regular</span>
+                <span style="font-weight:500">Medium</span>
+                <span style="font-weight:600">Semibold</span>
+                <span style="font-weight:700">Bold</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Escala tipográfica -->
+      <div class="tip-block">
+        <h3 class="tip-block-title">Escala tipográfica — Inter Tight</h3>
+        <div class="tip-scale">
+
+          <div class="tip-scale-row">
+            <div class="tip-scale-meta">
+              <span class="tip-scale-token">Display</span>
+              <span class="tip-scale-specs">96px · Black 900 · −0.04em · 1.1</span>
+            </div>
+            <div class="tip-scale-preview" style="font-size:clamp(40px,6vw,96px);font-weight:900;letter-spacing:-0.04em;line-height:1.1;">Neua</div>
+          </div>
+
+          <div class="tip-scale-row">
+            <div class="tip-scale-meta">
+              <span class="tip-scale-token">H1</span>
+              <span class="tip-scale-specs">72px · Black 900 · −0.04em · 1.1</span>
+            </div>
+            <div class="tip-scale-preview" style="font-size:clamp(36px,5vw,72px);font-weight:900;letter-spacing:-0.04em;line-height:1.1;">Grupo VIP Exclusivo</div>
+          </div>
+
+          <div class="tip-scale-row">
+            <div class="tip-scale-meta">
+              <span class="tip-scale-token">H2</span>
+              <span class="tip-scale-specs">48px · Bold 700 · −0.03em · 1.15</span>
+            </div>
+            <div class="tip-scale-preview" style="font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.03em;line-height:1.15;">Acesso antecipado e vantagens</div>
+          </div>
+
+          <div class="tip-scale-row">
+            <div class="tip-scale-meta">
+              <span class="tip-scale-token">H3</span>
+              <span class="tip-scale-specs">36px · Bold 700 · −0.02em · 1.2</span>
+            </div>
+            <div class="tip-scale-preview" style="font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-0.02em;line-height:1.2;">Benefícios exclusivos para membros</div>
+          </div>
+
+          <div class="tip-scale-row">
+            <div class="tip-scale-meta">
+              <span class="tip-scale-token">H4</span>
+              <span class="tip-scale-specs">24px · Semibold 600 · −0.02em · 1.3</span>
+            </div>
+            <div class="tip-scale-preview" style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.3;">Vagas limitadas para o grupo</div>
+          </div>
+
+          <div class="tip-scale-row">
+            <div class="tip-scale-meta">
+              <span class="tip-scale-token">H5</span>
+              <span class="tip-scale-specs">18px · Semibold 600 · −0.01em · 1.3</span>
+            </div>
+            <div class="tip-scale-preview" style="font-size:18px;font-weight:600;letter-spacing:-0.01em;line-height:1.3;">Cadastre-se para garantir sua vaga</div>
+          </div>
+
+          <div class="tip-scale-row">
+            <div class="tip-scale-meta">
+              <span class="tip-scale-token">Body Large</span>
+              <span class="tip-scale-specs">18px · Regular 400 · 0em · 1.6</span>
+            </div>
+            <div class="tip-scale-preview" style="font-size:18px;font-weight:400;letter-spacing:0;line-height:1.6;">Acesso antecipado a produtos, condições especiais e conteúdo exclusivo para quem faz parte da nossa comunidade premium.</div>
+          </div>
+
+          <div class="tip-scale-row">
+            <div class="tip-scale-meta">
+              <span class="tip-scale-token">Body</span>
+              <span class="tip-scale-specs">16px · Regular 400 · 0em · 1.6</span>
+            </div>
+            <div class="tip-scale-preview" style="font-size:16px;font-weight:400;letter-spacing:0;line-height:1.6;">Acesso antecipado a produtos, condições especiais e conteúdo exclusivo para quem faz parte da nossa comunidade premium. Aqui você encontra o que não está disponível para o público geral.</div>
+          </div>
+
+          <div class="tip-scale-row">
+            <div class="tip-scale-meta">
+              <span class="tip-scale-token">Body Small</span>
+              <span class="tip-scale-specs">14px · Regular 400 · 0em · 1.6</span>
+            </div>
+            <div class="tip-scale-preview" style="font-size:14px;font-weight:400;letter-spacing:0;line-height:1.6;">Ao se cadastrar você concorda com os termos de uso e política de privacidade. Suas informações são tratadas com total segurança.</div>
+          </div>
+
+          <div class="tip-scale-row">
+            <div class="tip-scale-meta">
+              <span class="tip-scale-token">Caption</span>
+              <span class="tip-scale-specs">12px · Medium 500 · 0em · 1.5</span>
+            </div>
+            <div class="tip-scale-preview" style="font-size:12px;font-weight:500;letter-spacing:0;line-height:1.5;color:var(--color-gray-500);">Texto de apoio, notas, legendas e informações secundárias de baixa hierarquia.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Space Grotesk — uso pontual -->
+      <div class="tip-block">
+        <h3 class="tip-block-title">Space Grotesk — exemplos de uso pontual</h3>
+        <div class="tip-sg-grid">
+
+          <div class="tip-sg-card">
+            <div class="tip-sg-label">Labels de seção</div>
+            <div class="tip-sg-example">
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-blue);">D — Tipografia</span>
+            </div>
+            <div class="tip-sg-spec">11px · 600 · 0.18em · uppercase</div>
+          </div>
+
+          <div class="tip-sg-card">
+            <div class="tip-sg-label">Badges e tags</div>
+            <div class="tip-sg-example">
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;background:var(--color-blue-light);color:var(--color-blue);padding:3px 10px;border-radius:999px;">VIP</span>
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;background:var(--color-gray-100);color:var(--color-gray-600);padding:3px 10px;border-radius:999px;">Exclusivo</span>
+            </div>
+            <div class="tip-sg-spec">10px · 600 · 0.12em · uppercase</div>
+          </div>
+
+          <div class="tip-sg-card">
+            <div class="tip-sg-label">Números de destaque</div>
+            <div class="tip-sg-example">
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;letter-spacing:-0.02em;line-height:1;color:var(--color-black);">2.4k</span>
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:500;color:var(--color-gray-400);display:block;margin-top:4px;">membros ativos</span>
+            </div>
+            <div class="tip-sg-spec">48px · 700 · −0.02em + 12px regular</div>
+          </div>
+
+          <div class="tip-sg-card">
+            <div class="tip-sg-label">Versão e metadados</div>
+            <div class="tip-sg-example" style="flex-direction:column;gap:4px;">
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:500;color:var(--color-gray-500);letter-spacing:0.06em;">v1.0.0 · Abril 2026</span>
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:500;color:var(--color-gray-400);letter-spacing:0.06em;">neua.com.br · Design System</span>
+            </div>
+            <div class="tip-sg-spec">11px · 500 · 0.06em</div>
+          </div>
+
+          <div class="tip-sg-card tip-sg-card--dont">
+            <div class="tip-sg-label tip-sg-label--dont">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Não usar em títulos
+            </div>
+            <div class="tip-sg-example tip-sg-example--dont">
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;letter-spacing:-0.02em;text-decoration:line-through;color:var(--color-gray-300);">Grupo VIP Exclusivo</span>
+            </div>
+            <div class="tip-sg-spec" style="color:var(--color-gray-400);">Space Grotesk em H2/H3 — proibido</div>
+          </div>
+
+          <div class="tip-sg-card tip-sg-card--dont">
+            <div class="tip-sg-label tip-sg-label--dont">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Não usar em corpo de texto
+            </div>
+            <div class="tip-sg-example tip-sg-example--dont">
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:400;line-height:1.6;color:var(--color-gray-300);text-decoration:line-through;">Acesse benefícios exclusivos e condições especiais como membro do grupo VIP.</span>
+            </div>
+            <div class="tip-sg-spec" style="color:var(--color-gray-400);">Space Grotesk em body — proibido</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Pesos em contexto -->
+      <div class="tip-block">
+        <h3 class="tip-block-title">Pesos em contexto — Inter Tight</h3>
+        <div class="tip-weights-grid">
+          <div class="tip-weight-row"><span class="tip-weight-label">300 Light</span><span style="font-weight:300;font-size:22px;letter-spacing:-0.02em;">Acesso antecipado e vantagens exclusivas</span></div>
+          <div class="tip-weight-row"><span class="tip-weight-label">400 Regular</span><span style="font-weight:400;font-size:22px;letter-spacing:-0.02em;">Acesso antecipado e vantagens exclusivas</span></div>
+          <div class="tip-weight-row"><span class="tip-weight-label">500 Medium</span><span style="font-weight:500;font-size:22px;letter-spacing:-0.02em;">Acesso antecipado e vantagens exclusivas</span></div>
+          <div class="tip-weight-row"><span class="tip-weight-label">600 Semibold</span><span style="font-weight:600;font-size:22px;letter-spacing:-0.02em;">Acesso antecipado e vantagens exclusivas</span></div>
+          <div class="tip-weight-row"><span class="tip-weight-label">700 Bold</span><span style="font-weight:700;font-size:22px;letter-spacing:-0.02em;">Acesso antecipado e vantagens exclusivas</span></div>
+          <div class="tip-weight-row"><span class="tip-weight-label">800 Extrabold</span><span style="font-weight:800;font-size:22px;letter-spacing:-0.02em;">Acesso antecipado e vantagens exclusivas</span></div>
+          <div class="tip-weight-row"><span class="tip-weight-label">900 Black</span><span style="font-weight:900;font-size:22px;letter-spacing:-0.02em;">Acesso antecipado e vantagens exclusivas</span></div>
+        </div>
+      </div>
+
+      <style>
+        .tip-block {
+          margin-bottom: var(--space-16);
+        }
+        .tip-block-title {
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          font-weight: var(--weight-semibold);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          color: var(--color-gray-400);
+          margin-bottom: var(--space-6);
+          padding-bottom: var(--space-4);
+          border-bottom: 1px solid var(--color-gray-100);
+        }
+
+        /* Fontes */
+        .tip-fonts-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-4);
+        }
+        .tip-font-card {
+          border: 1px solid var(--color-gray-200);
+          border-radius: var(--radius-xl);
+          padding: var(--space-8);
+          display: flex;
+          gap: var(--space-6);
+          align-items: flex-start;
+          background: var(--color-white);
+          transition: box-shadow var(--transition-base);
+        }
+        .tip-font-card:hover { box-shadow: var(--shadow-md); }
+        .tip-font-card--secondary { background: var(--color-gray-50); }
+        .tip-font-specimen {
+          font-family: var(--font-primary);
+          font-size: 80px;
+          font-weight: 700;
+          line-height: 1;
+          color: var(--color-black);
+          flex-shrink: 0;
+          width: 90px;
+        }
+        .tip-font-meta { flex: 1; }
+        .tip-font-name {
+          font-family: var(--font-primary);
+          font-size: var(--text-2xl);
+          font-weight: var(--weight-bold);
+          color: var(--color-black);
+          letter-spacing: var(--tracking-tight);
+          margin-bottom: var(--space-2);
+        }
+        .tip-font-role { margin-bottom: var(--space-4); }
+        .tip-font-badge {
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          font-weight: var(--weight-semibold);
+          letter-spacing: var(--tracking-wider);
+          text-transform: uppercase;
+          padding: 3px 10px;
+          border-radius: var(--radius-full);
+        }
+        .tip-font-badge--primary   { background: var(--color-black); color: var(--color-white); }
+        .tip-font-badge--secondary { background: var(--color-gray-200); color: var(--color-gray-600); }
+        .tip-font-desc {
+          font-size: var(--text-sm);
+          color: var(--color-gray-500);
+          line-height: var(--leading-relaxed);
+          margin-bottom: var(--space-5);
+        }
+        .tip-font-weights {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--space-4);
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          color: var(--color-gray-600);
+        }
+
+        /* Escala */
+        .tip-scale {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          border: 1px solid var(--color-gray-100);
+          border-radius: var(--radius-xl);
+          overflow: hidden;
+        }
+        .tip-scale-row {
+          display: grid;
+          grid-template-columns: 200px 1fr;
+          gap: var(--space-8);
+          align-items: center;
+          padding: var(--space-6) var(--space-8);
+          border-bottom: 1px solid var(--color-gray-100);
+          background: var(--color-white);
+          transition: background var(--transition-fast);
+          font-family: var(--font-primary);
+        }
+        .tip-scale-row:last-child { border-bottom: none; }
+        .tip-scale-row:hover { background: var(--color-gray-50); }
+        .tip-scale-meta {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-1);
+          flex-shrink: 0;
+        }
+        .tip-scale-token {
+          font-family: var(--font-secondary);
+          font-size: var(--text-xs);
+          font-weight: var(--weight-semibold);
+          letter-spacing: var(--tracking-wide);
+          text-transform: uppercase;
+          color: var(--color-blue);
+        }
+        .tip-scale-specs {
+          font-size: 11px;
+          color: var(--color-gray-400);
+          line-height: var(--leading-relaxed);
+        }
+        .tip-scale-preview {
+          font-family: var(--font-primary);
+          color: var(--color-black);
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+
+        /* Space Grotesk */
+        .tip-sg-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--space-4);
+        }
+        .tip-sg-card {
+          border: 1px solid var(--color-gray-100);
+          border-radius: var(--radius-lg);
+          padding: var(--space-5);
+          background: var(--color-white);
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-3);
+        }
+        .tip-sg-card--dont {
+          background: var(--color-gray-50);
+          border-color: var(--color-gray-200);
+        }
+        .tip-sg-label {
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          font-weight: var(--weight-semibold);
+          color: var(--color-gray-500);
+          letter-spacing: var(--tracking-wide);
+        }
+        .tip-sg-label--dont {
+          color: #c0392b;
+          display: flex;
+          align-items: center;
+          gap: var(--space-1);
+        }
+        .tip-sg-example {
+          display: flex;
+          align-items: center;
+          gap: var(--space-2);
+          flex-wrap: wrap;
+          min-height: 56px;
+        }
+        .tip-sg-example--dont { opacity: 0.6; }
+        .tip-sg-spec {
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          color: var(--color-gray-400);
+          letter-spacing: var(--tracking-wide);
+          margin-top: auto;
+          padding-top: var(--space-2);
+          border-top: 1px solid var(--color-gray-100);
+        }
+
+        /* Pesos */
+        .tip-weights-grid {
+          display: flex;
+          flex-direction: column;
+          border: 1px solid var(--color-gray-100);
+          border-radius: var(--radius-xl);
+          overflow: hidden;
+        }
+        .tip-weight-row {
+          display: flex;
+          align-items: center;
+          gap: var(--space-8);
+          padding: var(--space-5) var(--space-8);
+          border-bottom: 1px solid var(--color-gray-100);
+          background: var(--color-white);
+          transition: background var(--transition-fast);
+          font-family: var(--font-primary);
+        }
+        .tip-weight-row:last-child { border-bottom: none; }
+        .tip-weight-row:hover { background: var(--color-gray-50); }
+        .tip-weight-label {
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          font-weight: var(--weight-semibold);
+          letter-spacing: var(--tracking-wider);
+          text-transform: uppercase;
+          color: var(--color-gray-400);
+          min-width: 120px;
+          flex-shrink: 0;
+        }
+
+        @media (max-width: 900px) {
+          .tip-fonts-row { grid-template-columns: 1fr; }
+          .tip-sg-grid   { grid-template-columns: 1fr 1fr; }
+          .tip-scale-row { grid-template-columns: 160px 1fr; gap: var(--space-4); padding: var(--space-5) var(--space-5); }
+          .tip-weight-row { padding: var(--space-4) var(--space-5); }
+          .tip-weight-label { min-width: 100px; }
+        }
+        @media (max-width: 640px) {
+          .tip-sg-grid   { grid-template-columns: 1fr; }
+          .tip-scale-row { grid-template-columns: 1fr; gap: var(--space-2); }
+          .tip-font-card { flex-direction: column; }
+          .tip-font-specimen { font-size: 56px; width: auto; }
+        }
+      </style>
+    </section>
+
+    <!-- ====================================================
+         E — LOGO
+    ==================================================== -->
+    <section id="logo" class="ds-section">
+      <div class="ds-section-header">
+        <span class="ds-section-tag">E — Logo</span>
+        <h2 class="ds-section-title">Sistema de Logo</h2>
+        <p class="ds-section-desc">Quatro variações de logo para diferentes contextos. Sempre usar os SVGs originais — nunca recriar, distorcer ou recolorir.</p>
+      </div>
+
+      <!-- Inventário de variações -->
+      <div class="logo-block">
+        <h3 class="logo-block-title">Variações disponíveis</h3>
+        <div class="logo-variants-grid">
+
+          <!-- Ícone -->
+          <div class="logo-variant-card">
+            <div class="logo-variant-label">
+              <span class="logo-variant-name">Ícone</span>
+              <span class="logo-variant-file">Ativo 13 / 17</span>
+            </div>
+            <div class="logo-variant-use">Favicon, avatar, app icon, contextos quadrados</div>
+            <div class="logo-preview logo-preview--light">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 564.69 565.12" style="height:48px;width:auto;">
+                <path fill="#141414" d="M544.79,73.14c2.24-2.31,4.41-4.62,6.72-6.93,1.47-1.47,2.94-2.94,4.48-4.34l-.11-.11c6.47-6.52,10.01-15.94,8.44-26.15-2.01-13.08-12.91-23.6-26.03-25.28-10.88-1.39-20.64,3.1-26.98,10.58-.88.9-1.76,1.8-2.61,2.7-2.52,2.45-5.04,4.9-7.63,7.28l-.35.42c-.49.42-.91.84-1.33,1.19-89.23,82.32-214.81,103.14-322.41,62.47-3.68-1.39-6.63,3.17-3.85,5.95l72.61,72.61c39.38,4.41,79.26,2.59,118.08-5.46,20.92-4.34,41.48-10.42,61.56-18.4-7.97,19.94-13.99,40.36-18.33,61.21-8.05,38.96-9.86,79.05-5.46,118.5.63,5.74,1.47,11.47,2.38,17.21.98,6.09,2.1,12.17,3.36,18.19l-196.99-196.99L77.01,34.53c-.28-.28-.56-.63-.84-.91l-20.92-20.92c-1.04-.97-2.09-2.02-3.27-2.99C44.95,2.09,34.12-1.97,22.39.95,11.89,3.56,3.43,12.12.89,22.64c-2.92,12.08,1.58,23.12,9.69,30.07,4.17,4.61,8.44,9.16,12.92,13.58l.21.28c4.34,4.27,8.39,8.67,12.38,13.15,107.1,120.25,105.14,303.53-5.81,421.54,1.33-1.33,2.8-2.66,4.2-3.85l-4.13,4.13-.14.14-11.82,11.82.06.06c-7.26,7.18-10.92,18-7.91,29.52,2.65,10.13,10.84,18.33,20.97,20.98,11.52,3.01,22.35-.64,29.52-7.91l.09.09c1.68-1.75,3.36-3.5,5.18-5.32,2.24-2.17,4.55-4.41,6.86-6.58l.7-.7c1.61-1.47,3.29-3.01,4.97-4.55,88.38-79.33,211.07-99.37,316.84-60.36,3.67,1.35,6.59-3.2,3.82-5.97l-71.84-71.84c-38.75-4.27-78-2.45-116.19,5.53-12.17,2.45-24.2,5.6-36.17,9.3-4.27,1.33-8.46,2.73-12.66,4.27-4.41,1.54-8.74,3.15-13.08,4.9,7.83-19.8,13.99-40.15,18.26-60.86,10.49-50.23,10.56-102.2.21-152.43l194.75,194.75,130.46,130.46c3.71,3.22,7.35,6.51,10.84,10l.17-.17c7.38,6.36,17.68,9.45,28.81,6.18,10.06-2.95,18.08-11.27,20.61-21.44,2.94-11.78-1.02-22.71-8.59-29.89-16.35-17.36-30.46-36.12-42.05-55.9-5.88-9.93-11.19-20.22-15.81-30.64-50.16-112.14-31.06-247.64,57.43-341.72l.14-.14Z"/>
+              </svg>
+            </div>
+            <div class="logo-preview logo-preview--dark">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 564.69 565.12" style="height:48px;width:auto;">
+                <path fill="#ffffff" d="M544.79,73.14c2.24-2.31,4.41-4.62,6.72-6.93,1.47-1.47,2.94-2.94,4.48-4.34l-.11-.11c6.47-6.52,10.01-15.94,8.44-26.15-2.01-13.08-12.91-23.6-26.03-25.28-10.88-1.39-20.64,3.1-26.98,10.58-.88.9-1.76,1.8-2.61,2.7-2.52,2.45-5.04,4.9-7.63,7.28l-.35.42c-.49.42-.91.84-1.33,1.19-89.23,82.32-214.81,103.14-322.41,62.47-3.68-1.39-6.63,3.17-3.85,5.95l72.61,72.61c39.38,4.41,79.26,2.59,118.08-5.46,20.92-4.34,41.48-10.42,61.56-18.4-7.97,19.94-13.99,40.36-18.33,61.21-8.05,38.96-9.86,79.05-5.46,118.5.63,5.74,1.47,11.47,2.38,17.21.98,6.09,2.1,12.17,3.36,18.19l-196.99-196.99L77.01,34.53c-.28-.28-.56-.63-.84-.91l-20.92-20.92c-1.04-.97-2.09-2.02-3.27-2.99C44.95,2.09,34.12-1.97,22.39.95,11.89,3.56,3.43,12.12.89,22.64c-2.92,12.08,1.58,23.12,9.69,30.07,4.17,4.61,8.44,9.16,12.92,13.58l.21.28c4.34,4.27,8.39,8.67,12.38,13.15,107.1,120.25,105.14,303.53-5.81,421.54,1.33-1.33,2.8-2.66,4.2-3.85l-4.13,4.13-.14.14-11.82,11.82.06.06c-7.26,7.18-10.92,18-7.91,29.52,2.65,10.13,10.84,18.33,20.97,20.98,11.52,3.01,22.35-.64,29.52-7.91l.09.09c1.68-1.75,3.36-3.5,5.18-5.32,2.24-2.17,4.55-4.41,6.86-6.58l.7-.7c1.61-1.47,3.29-3.01,4.97-4.55,88.38-79.33,211.07-99.37,316.84-60.36,3.67,1.35,6.59-3.2,3.82-5.97l-71.84-71.84c-38.75-4.27-78-2.45-116.19,5.53-12.17,2.45-24.2,5.6-36.17,9.3-4.27,1.33-8.46,2.73-12.66,4.27-4.41,1.54-8.74,3.15-13.08,4.9,7.83-19.8,13.99-40.15,18.26-60.86,10.49-50.23,10.56-102.2.21-152.43l194.75,194.75,130.46,130.46c3.71,3.22,7.35,6.51,10.84,10l.17-.17c7.38,6.36,17.68,9.45,28.81,6.18,10.06-2.95,18.08-11.27,20.61-21.44,2.94-11.78-1.02-22.71-8.59-29.89-16.35-17.36-30.46-36.12-42.05-55.9-5.88-9.93-11.19-20.22-15.81-30.64-50.16-112.14-31.06-247.64,57.43-341.72l.14-.14Z"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Wordmark horizontal -->
+          <div class="logo-variant-card">
+            <div class="logo-variant-label">
+              <span class="logo-variant-name">Wordmark</span>
+              <span class="logo-variant-file">Ativo 11 / 15</span>
+            </div>
+            <div class="logo-variant-use">Cabeçalhos, rodapés, e-mail, documentos</div>
+            <div class="logo-preview logo-preview--light">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1890.04 283.77" style="height:28px;width:auto;">
+                <path fill="#141414" d="M481.7,93.04v96.57c0,53.92,38.63,92.54,92.54,92.54h350.06v-64.38h-350.06c-18.51,0-28.17-9.66-28.17-28.16v-16.1h378.22v-64.38h-378.22v-16.09c0-18.51,9.66-28.16,28.17-28.16h350.06V.5h-350.06c-53.92,0-92.54,38.63-92.54,92.54Z"/>
+                <path fill="#141414" d="M1342.79,189.61c0,18.51-9.66,28.16-28.16,28.16h-257.52c-18.51,0-28.17-9.66-28.17-28.16V.5h-64.38v189.11c0,53.92,38.63,92.54,92.54,92.54h257.52c53.92,0,92.54-38.63,92.54-92.54V.5h-64.38v189.11Z"/>
+                <path fill="#141414" d="M1797.49.5h-257.51c-53.92,0-92.54,38.63-92.54,92.54v96.57c0,53.92,38.63,92.54,92.54,92.54h51.1c44.66,0,94.15-20.52,125.94-52.31l22.94-23.34c19.72-19.31,52.31-33,80.07-33h5.64v108.64h64.38V93.04c0-53.92-38.63-92.54-92.54-92.54ZM1825.66,109.14h-5.64c-44.66,0-94.15,20.52-125.94,52.31l-22.93,23.34c-19.72,19.31-52.31,32.99-80.07,32.99h-51.1c-18.51,0-28.17-9.66-28.17-28.16v-96.57c0-18.51,9.65-28.16,28.17-28.16h257.51c18.51,0,28.17,9.65,28.17,28.16v16.09Z"/>
+                <path fill="#141414" d="M368.82,280.04l-81.29-180.53C254.69,25.09,213.98,0,126.1,0H0v283.77h70.82V55.12h55.27c28.73,0,68.09,11.59,92.55,66.99l73,161.67h148.56V1.38h-71.39v278.66Z"/>
+              </svg>
+            </div>
+            <div class="logo-preview logo-preview--dark">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1890.04 283.77" style="height:28px;width:auto;">
+                <path fill="#ffffff" d="M481.7,93.04v96.57c0,53.92,38.63,92.54,92.54,92.54h350.06v-64.38h-350.06c-18.51,0-28.17-9.66-28.17-28.16v-16.1h378.22v-64.38h-378.22v-16.09c0-18.51,9.66-28.16,28.17-28.16h350.06V.5h-350.06c-53.92,0-92.54,38.63-92.54,92.54Z"/>
+                <path fill="#ffffff" d="M1342.79,189.61c0,18.51-9.66,28.16-28.16,28.16h-257.52c-18.51,0-28.17-9.66-28.17-28.16V.5h-64.38v189.11c0,53.92,38.63,92.54,92.54,92.54h257.52c53.92,0,92.54-38.63,92.54-92.54V.5h-64.38v189.11Z"/>
+                <path fill="#ffffff" d="M1797.49.5h-257.51c-53.92,0-92.54,38.63-92.54,92.54v96.57c0,53.92,38.63,92.54,92.54,92.54h51.1c44.66,0,94.15-20.52,125.94-52.31l22.94-23.34c19.72-19.31,52.31-33,80.07-33h5.64v108.64h64.38V93.04c0-53.92-38.63-92.54-92.54-92.54ZM1825.66,109.14h-5.64c-44.66,0-94.15,20.52-125.94,52.31l-22.93,23.34c-19.72,19.31-52.31,32.99-80.07,32.99h-51.1c-18.51,0-28.17-9.66-28.17-28.16v-96.57c0-18.51,9.65-28.16,28.17-28.16h257.51c18.51,0,28.17,9.65,28.17,28.16v16.09Z"/>
+                <path fill="#ffffff" d="M368.82,280.04l-81.29-180.53C254.69,25.09,213.98,0,126.1,0H0v283.77h70.82V55.12h55.27c28.73,0,68.09,11.59,92.55,66.99l73,161.67h148.56V1.38h-71.39v278.66Z"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Logo combo (ícone + wordmark) -->
+          <div class="logo-variant-card">
+            <div class="logo-variant-label">
+              <span class="logo-variant-name">Logo completo</span>
+              <span class="logo-variant-file">Ativo 10 / 14</span>
+            </div>
+            <div class="logo-variant-use">Uso geral, hero, apresentações, materiais</div>
+            <div class="logo-preview logo-preview--light">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 897.41 612.77" style="height:52px;width:auto;">
+                <path fill="#141414" d="M557.98,66.13h339.43V3.7h-339.43c-52.28,0-89.74,37.45-89.74,89.73v93.64c0,52.28,37.45,89.73,89.74,89.73h339.43v-62.42h-339.43c-17.95,0-27.31-9.37-27.31-27.31v-15.61h366.74v-62.42h-366.74v-15.6c0-17.95,9.37-27.31,27.31-27.31Z"/>
+                <path fill="#141414" d="M366.78,523.03c0,17.94-9.37,27.31-27.31,27.31H89.78c-17.95,0-27.31-9.37-27.31-27.31v-183.37H.04v183.37c0,52.28,37.45,89.73,89.74,89.73h249.7c52.28,0,89.73-37.45,89.73-89.73v-183.37h-62.42v183.37Z"/>
+                <path fill="#141414" d="M807.68,339.66h-249.7c-52.28,0-89.74,37.45-89.74,89.73v93.64c0,52.28,37.45,89.73,89.74,89.73h49.55c43.31,0,91.3-19.9,122.12-50.72l22.24-22.63c19.12-18.73,50.72-32,77.64-32h5.46v105.34h62.42v-183.37c0-52.28-37.45-89.73-89.73-89.73ZM834.99,445h-5.46c-43.3,0-91.3,19.9-122.11,50.72l-22.24,22.63c-19.12,18.73-50.72,31.99-77.64,31.99h-49.55c-17.95,0-27.31-9.37-27.31-27.31v-93.64c0-17.95,9.36-27.31,27.31-27.31h249.7c17.94,0,27.31,9.36,27.31,27.31v15.6Z"/>
+                <path fill="#141414" d="M359.8,273.19l-79.3-176.12C248.46,24.47,208.74,0,123.02,0H0v276.83h69.09V53.77h53.92c28.02,0,66.43,11.31,90.28,65.35l71.22,157.72h144.93V1.35h-69.64v271.84Z"/>
+              </svg>
+            </div>
+            <div class="logo-preview logo-preview--dark">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 897.41 612.77" style="height:52px;width:auto;">
+                <path fill="#ffffff" d="M557.98,66.13h339.43V3.7h-339.43c-52.28,0-89.74,37.45-89.74,89.73v93.64c0,52.28,37.45,89.73,89.74,89.73h339.43v-62.42h-339.43c-17.95,0-27.31-9.37-27.31-27.31v-15.61h366.74v-62.42h-366.74v-15.6c0-17.95,9.37-27.31,27.31-27.31Z"/>
+                <path fill="#ffffff" d="M366.78,523.03c0,17.94-9.37,27.31-27.31,27.31H89.78c-17.95,0-27.31-9.37-27.31-27.31v-183.37H.04v183.37c0,52.28,37.45,89.73,89.74,89.73h249.7c52.28,0,89.73-37.45,89.73-89.73v-183.37h-62.42v183.37Z"/>
+                <path fill="#ffffff" d="M807.68,339.66h-249.7c-52.28,0-89.74,37.45-89.74,89.73v93.64c0,52.28,37.45,89.73,89.74,89.73h49.55c43.31,0,91.3-19.9,122.12-50.72l22.24-22.63c19.12-18.73,50.72-32,77.64-32h5.46v105.34h62.42v-183.37c0-52.28-37.45-89.73-89.73-89.73ZM834.99,445h-5.46c-43.3,0-91.3,19.9-122.11,50.72l-22.24,22.63c-19.12,18.73-50.72,31.99-77.64,31.99h-49.55c-17.95,0-27.31-9.37-27.31-27.31v-93.64c0-17.95,9.36-27.31,27.31-27.31h249.7c17.94,0,27.31,9.36,27.31,27.31v15.6Z"/>
+                <path fill="#ffffff" d="M359.8,273.19l-79.3-176.12C248.46,24.47,208.74,0,123.02,0H0v276.83h69.09V53.77h53.92c28.02,0,66.43,11.31,90.28,65.35l71.22,157.72h144.93V1.35h-69.64v271.84Z"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Logo wide -->
+          <div class="logo-variant-card">
+            <div class="logo-variant-label">
+              <span class="logo-variant-name">Logo wide</span>
+              <span class="logo-variant-file">Ativo 12 / 16</span>
+            </div>
+            <div class="logo-variant-use">Banners, assinaturas, layouts horizontais amplos</div>
+            <div class="logo-preview logo-preview--light" style="padding: 32px 40px;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2578.91 565.12" style="height:36px;width:auto;">
+                <path fill="#141414" d="M557.98,66.13h339.43V3.7h-339.43c-52.28,0-89.74,37.45-89.74,89.73v93.64c0,52.28,37.45,89.73,89.74,89.73h339.43v-62.42h-339.43c-17.95,0-27.31-9.37-27.31-27.31v-15.61h366.74v-62.42h-366.74v-15.6c0-17.95,9.37-27.31,27.31-27.31Z"/>
+                <path fill="#141414" d="M366.78,523.03c0,17.94-9.37,27.31-27.31,27.31H89.78c-17.95,0-27.31-9.37-27.31-27.31v-183.37H.04v183.37c0,52.28,37.45,89.73,89.74,89.73h249.7c52.28,0,89.73-37.45,89.73-89.73v-183.37h-62.42v183.37Z"/>
+                <path fill="#141414" d="M807.68,339.66h-249.7c-52.28,0-89.74,37.45-89.74,89.73v93.64c0,52.28,37.45,89.73,89.74,89.73h49.55c43.31,0,91.3-19.9,122.12-50.72l22.24-22.63c19.12-18.73,50.72-32,77.64-32h5.46v105.34h62.42v-183.37c0-52.28-37.45-89.73-89.73-89.73ZM834.99,445h-5.46c-43.3,0-91.3,19.9-122.11,50.72l-22.24,22.63c-19.12,18.73-50.72,31.99-77.64,31.99h-49.55c-17.95,0-27.31-9.37-27.31-27.31v-93.64c0-17.95,9.36-27.31,27.31-27.31h249.7c17.94,0,27.31,9.36,27.31,27.31v15.6Z"/>
+                <path fill="#141414" d="M359.8,273.19l-79.3-176.12C248.46,24.47,208.74,0,123.02,0H0v276.83h69.09V53.77h53.92c28.02,0,66.43,11.31,90.28,65.35l71.22,157.72h144.93V1.35h-69.64v271.84Z"/>
+                <path fill="#141414" d="M1344.47,93.04v96.57c0,53.92,38.63,92.54,92.54,92.54h350.06v-64.38h-350.06c-18.51,0-28.17-9.66-28.17-28.16v-16.1h378.22v-64.38h-378.22v-16.09c0-18.51,9.66-28.16,28.17-28.16h350.06V.5h-350.06c-53.92,0-92.54,38.63-92.54,92.54Z"/>
+                <path fill="#141414" d="M2205.56,189.61c0,18.51-9.66,28.16-28.16,28.16h-257.52c-18.51,0-28.17-9.66-28.17-28.16V.5h-64.38v189.11c0,53.92,38.63,92.54,92.54,92.54h257.52c53.92,0,92.54-38.63,92.54-92.54V.5h-64.38v189.11Z"/>
+                <path fill="#141414" d="M2578.91.5h-257.51c-53.92,0-92.54,38.63-92.54,92.54v96.57c0,53.92,38.63,92.54,92.54,92.54h51.1c44.66,0,94.15-20.52,125.94-52.31l22.94-23.34c19.72-19.31,52.31-33,80.07-33h5.64v108.64h64.38V93.04c0-53.92-38.63-92.54-92.54-92.54ZM2514.53,109.14h-5.64c-44.66,0-94.15,20.52-125.94,52.31l-22.93,23.34c-19.72,19.31-52.31,32.99-80.07,32.99h-51.1c-18.51,0-28.17-9.66-28.17-28.16v-96.57c0-18.51,9.65-28.16,28.17-28.16h257.51c18.51,0,28.17,9.65,28.17,28.16v16.09Z"/>
+                <path fill="#141414" d="M1231.59,280.04l-81.29-180.53C1117.46,25.09,1076.75,0,988.87,0h-126.1v283.77h70.82V55.12h55.27c28.73,0,68.09,11.59,92.55,66.99l73,161.67h148.56V1.38h-71.39v278.66Z"/>
+              </svg>
+            </div>
+            <div class="logo-preview logo-preview--dark" style="padding: 32px 40px;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2578.91 565.12" style="height:36px;width:auto;">
+                <path fill="#ffffff" d="M557.98,66.13h339.43V3.7h-339.43c-52.28,0-89.74,37.45-89.74,89.73v93.64c0,52.28,37.45,89.73,89.74,89.73h339.43v-62.42h-339.43c-17.95,0-27.31-9.37-27.31-27.31v-15.61h366.74v-62.42h-366.74v-15.6c0-17.95,9.37-27.31,27.31-27.31Z"/>
+                <path fill="#ffffff" d="M366.78,523.03c0,17.94-9.37,27.31-27.31,27.31H89.78c-17.95,0-27.31-9.37-27.31-27.31v-183.37H.04v183.37c0,52.28,37.45,89.73,89.74,89.73h249.7c52.28,0,89.73-37.45,89.73-89.73v-183.37h-62.42v183.37Z"/>
+                <path fill="#ffffff" d="M807.68,339.66h-249.7c-52.28,0-89.74,37.45-89.74,89.73v93.64c0,52.28,37.45,89.73,89.74,89.73h49.55c43.31,0,91.3-19.9,122.12-50.72l22.24-22.63c19.12-18.73,50.72-32,77.64-32h5.46v105.34h62.42v-183.37c0-52.28-37.45-89.73-89.73-89.73ZM834.99,445h-5.46c-43.3,0-91.3,19.9-122.11,50.72l-22.24,22.63c-19.12,18.73-50.72,31.99-77.64,31.99h-49.55c-17.95,0-27.31-9.37-27.31-27.31v-93.64c0-17.95,9.36-27.31,27.31-27.31h249.7c17.94,0,27.31,9.36,27.31,27.31v15.6Z"/>
+                <path fill="#ffffff" d="M359.8,273.19l-79.3-176.12C248.46,24.47,208.74,0,123.02,0H0v276.83h69.09V53.77h53.92c28.02,0,66.43,11.31,90.28,65.35l71.22,157.72h144.93V1.35h-69.64v271.84Z"/>
+                <path fill="#ffffff" d="M1344.47,93.04v96.57c0,53.92,38.63,92.54,92.54,92.54h350.06v-64.38h-350.06c-18.51,0-28.17-9.66-28.17-28.16v-16.1h378.22v-64.38h-378.22v-16.09c0-18.51,9.66-28.16,28.17-28.16h350.06V.5h-350.06c-53.92,0-92.54,38.63-92.54,92.54Z"/>
+                <path fill="#ffffff" d="M2205.56,189.61c0,18.51-9.66,28.16-28.16,28.16h-257.52c-18.51,0-28.17-9.66-28.17-28.16V.5h-64.38v189.11c0,53.92,38.63,92.54,92.54,92.54h257.52c53.92,0,92.54-38.63,92.54-92.54V.5h-64.38v189.11Z"/>
+                <path fill="#ffffff" d="M2578.91.5h-257.51c-53.92,0-92.54,38.63-92.54,92.54v96.57c0,53.92,38.63,92.54,92.54,92.54h51.1c44.66,0,94.15-20.52,125.94-52.31l22.94-23.34c19.72-19.31,52.31-33,80.07-33h5.64v108.64h64.38V93.04c0-53.92-38.63-92.54-92.54-92.54ZM2514.53,109.14h-5.64c-44.66,0-94.15,20.52-125.94,52.31l-22.93,23.34c-19.72,19.31-52.31,32.99-80.07,32.99h-51.1c-18.51,0-28.17-9.66-28.17-28.16v-96.57c0-18.51,9.65-28.16,28.17-28.16h257.51c18.51,0,28.17,9.65,28.17,28.16v16.09Z"/>
+                <path fill="#ffffff" d="M1231.59,280.04l-81.29-180.53C1117.46,25.09,1076.75,0,988.87,0h-126.1v283.77h70.82V55.12h55.27c28.73,0,68.09,11.59,92.55,66.99l73,161.67h148.56V1.38h-71.39v278.66Z"/>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Área de proteção -->
+      <div class="logo-block">
+        <h3 class="logo-block-title">Área de proteção</h3>
+        <div class="logo-clearance-wrap">
+          <div class="logo-clearance-demo">
+            <div class="logo-clearance-zone">
+              <div class="logo-clearance-mark logo-clearance-mark--top">x</div>
+              <div class="logo-clearance-mark logo-clearance-mark--bottom">x</div>
+              <div class="logo-clearance-mark logo-clearance-mark--left">x</div>
+              <div class="logo-clearance-mark logo-clearance-mark--right">x</div>
+              <div class="logo-clearance-inner">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 897.41 612.77" style="height:48px;width:auto;">
+                  <path fill="#141414" d="M557.98,66.13h339.43V3.7h-339.43c-52.28,0-89.74,37.45-89.74,89.73v93.64c0,52.28,37.45,89.73,89.74,89.73h339.43v-62.42h-339.43c-17.95,0-27.31-9.37-27.31-27.31v-15.61h366.74v-62.42h-366.74v-15.6c0-17.95,9.37-27.31,27.31-27.31Z"/>
+                  <path fill="#141414" d="M366.78,523.03c0,17.94-9.37,27.31-27.31,27.31H89.78c-17.95,0-27.31-9.37-27.31-27.31v-183.37H.04v183.37c0,52.28,37.45,89.73,89.74,89.73h249.7c52.28,0,89.73-37.45,89.73-89.73v-183.37h-62.42v183.37Z"/>
+                  <path fill="#141414" d="M807.68,339.66h-249.7c-52.28,0-89.74,37.45-89.74,89.73v93.64c0,52.28,37.45,89.73,89.74,89.73h49.55c43.31,0,91.3-19.9,122.12-50.72l22.24-22.63c19.12-18.73,50.72-32,77.64-32h5.46v105.34h62.42v-183.37c0-52.28-37.45-89.73-89.73-89.73ZM834.99,445h-5.46c-43.3,0-91.3,19.9-122.11,50.72l-22.24,22.63c-19.12,18.73-50.72,31.99-77.64,31.99h-49.55c-17.95,0-27.31-9.37-27.31-27.31v-93.64c0-17.95,9.36-27.31,27.31-27.31h249.7c17.94,0,27.31,9.36,27.31,27.31v15.6Z"/>
+                  <path fill="#141414" d="M359.8,273.19l-79.3-176.12C248.46,24.47,208.74,0,123.02,0H0v276.83h69.09V53.77h53.92c28.02,0,66.43,11.31,90.28,65.35l71.22,157.72h144.93V1.35h-69.64v271.84Z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="logo-clearance-info">
+            <p class="logo-clearance-rule">A área de proteção mínima ao redor do logo é <strong>igual à altura da letra "N"</strong> do wordmark (representada por <strong>x</strong> no diagrama).</p>
+            <ul class="logo-clearance-list">
+              <li>Nenhum elemento deve entrar nessa área — texto, imagem, borda ou outro logo</li>
+              <li>Em fundos fotográficos, garantir contraste suficiente na zona de proteção</li>
+              <li>Em tamanhos muito pequenos, usar apenas o ícone isolado (Ativo 13/17)</li>
+            </ul>
+            <div class="logo-size-table">
+              <div class="logo-size-row logo-size-row--header">
+                <span>Contexto</span>
+                <span>Altura mínima</span>
+                <span>Variação recomendada</span>
+              </div>
+              <div class="logo-size-row">
+                <span>Desktop / web</span>
+                <span>28px</span>
+                <span>Wordmark ou Logo completo</span>
+              </div>
+              <div class="logo-size-row">
+                <span>Mobile</span>
+                <span>20px</span>
+                <span>Wordmark</span>
+              </div>
+              <div class="logo-size-row">
+                <span>Favicon / ícone</span>
+                <span>16px</span>
+                <span>Ícone isolado</span>
+              </div>
+              <div class="logo-size-row">
+                <span>Impressão</span>
+                <span>10mm</span>
+                <span>Logo completo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- O que não fazer -->
+      <div class="logo-block">
+        <h3 class="logo-block-title">O que nunca fazer com o logo</h3>
+        <div class="logo-donts-grid">
+
+          <div class="logo-dont-card">
+            <div class="logo-dont-preview" style="background:#f7f7f7;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1890.04 283.77" style="height:22px;width:auto;transform:scaleX(1.4);transform-origin:center;">
+                <path fill="#b0b0b0" d="M481.7,93.04v96.57c0,53.92,38.63,92.54,92.54,92.54h350.06v-64.38h-350.06c-18.51,0-28.17-9.66-28.17-28.16v-16.1h378.22v-64.38h-378.22v-16.09c0-18.51,9.66-28.16,28.17-28.16h350.06V.5h-350.06c-53.92,0-92.54,38.63-92.54,92.54Z"/><path fill="#b0b0b0" d="M1342.79,189.61c0,18.51-9.66,28.16-28.16,28.16h-257.52c-18.51,0-28.17-9.66-28.17-28.16V.5h-64.38v189.11c0,53.92,38.63,92.54,92.54,92.54h257.52c53.92,0,92.54-38.63,92.54-92.54V.5h-64.38v189.11Z"/><path fill="#b0b0b0" d="M1797.49.5h-257.51c-53.92,0-92.54,38.63-92.54,92.54v96.57c0,53.92,38.63,92.54,92.54,92.54h51.1c44.66,0,94.15-20.52,125.94-52.31l22.94-23.34c19.72-19.31,52.31-33,80.07-33h5.64v108.64h64.38V93.04c0-53.92-38.63-92.54-92.54-92.54ZM1825.66,109.14h-5.64c-44.66,0-94.15,20.52-125.94,52.31l-22.93,23.34c-19.72,19.31-52.31,32.99-80.07,32.99h-51.1c-18.51,0-28.17-9.66-28.17-28.16v-96.57c0-18.51,9.65-28.16,28.17-28.16h257.51c18.51,0,28.17,9.65,28.17,28.16v16.09Z"/><path fill="#b0b0b0" d="M368.82,280.04l-81.29-180.53C254.69,25.09,213.98,0,126.1,0H0v283.77h70.82V55.12h55.27c28.73,0,68.09,11.59,92.55,66.99l73,161.67h148.56V1.38h-71.39v278.66Z"/>
+              </svg>
+            </div>
+            <div class="logo-dont-label">Não distorcer proporções</div>
+          </div>
+
+          <div class="logo-dont-card">
+            <div class="logo-dont-preview" style="background:#f7f7f7;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1890.04 283.77" style="height:22px;width:auto;opacity:0.25;">
+                <path fill="#141414" d="M481.7,93.04v96.57c0,53.92,38.63,92.54,92.54,92.54h350.06v-64.38h-350.06c-18.51,0-28.17-9.66-28.17-28.16v-16.1h378.22v-64.38h-378.22v-16.09c0-18.51,9.66-28.16,28.17-28.16h350.06V.5h-350.06c-53.92,0-92.54,38.63-92.54,92.54Z"/><path fill="#141414" d="M1342.79,189.61c0,18.51-9.66,28.16-28.16,28.16h-257.52c-18.51,0-28.17-9.66-28.17-28.16V.5h-64.38v189.11c0,53.92,38.63,92.54,92.54,92.54h257.52c53.92,0,92.54-38.63,92.54-92.54V.5h-64.38v189.11Z"/><path fill="#141414" d="M1797.49.5h-257.51c-53.92,0-92.54,38.63-92.54,92.54v96.57c0,53.92,38.63,92.54,92.54,92.54h51.1c44.66,0,94.15-20.52,125.94-52.31l22.94-23.34c19.72-19.31,52.31-33,80.07-33h5.64v108.64h64.38V93.04c0-53.92-38.63-92.54-92.54-92.54ZM1825.66,109.14h-5.64c-44.66,0-94.15,20.52-125.94,52.31l-22.93,23.34c-19.72,19.31-52.31,32.99-80.07,32.99h-51.1c-18.51,0-28.17-9.66-28.17-28.16v-96.57c0-18.51,9.65-28.16,28.17-28.16h257.51c18.51,0,28.17,9.65,28.17,28.16v16.09Z"/><path fill="#141414" d="M368.82,280.04l-81.29-180.53C254.69,25.09,213.98,0,126.1,0H0v283.77h70.82V55.12h55.27c28.73,0,68.09,11.59,92.55,66.99l73,161.67h148.56V1.38h-71.39v278.66Z"/>
+              </svg>
+            </div>
+            <div class="logo-dont-label">Não usar com baixo contraste</div>
+          </div>
+
+          <div class="logo-dont-card">
+            <div class="logo-dont-preview" style="background:#f7f7f7;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1890.04 283.77" style="height:22px;width:auto;">
+                <path fill="#2176ff" d="M481.7,93.04v96.57c0,53.92,38.63,92.54,92.54,92.54h350.06v-64.38h-350.06c-18.51,0-28.17-9.66-28.17-28.16v-16.1h378.22v-64.38h-378.22v-16.09c0-18.51,9.66-28.16,28.17-28.16h350.06V.5h-350.06c-53.92,0-92.54,38.63-92.54,92.54Z"/><path fill="#2176ff" d="M1342.79,189.61c0,18.51-9.66,28.16-28.16,28.16h-257.52c-18.51,0-28.17-9.66-28.17-28.16V.5h-64.38v189.11c0,53.92,38.63,92.54,92.54,92.54h257.52c53.92,0,92.54-38.63,92.54-92.54V.5h-64.38v189.11Z"/><path fill="#2176ff" d="M1797.49.5h-257.51c-53.92,0-92.54,38.63-92.54,92.54v96.57c0,53.92,38.63,92.54,92.54,92.54h51.1c44.66,0,94.15-20.52,125.94-52.31l22.94-23.34c19.72-19.31,52.31-33,80.07-33h5.64v108.64h64.38V93.04c0-53.92-38.63-92.54-92.54-92.54ZM1825.66,109.14h-5.64c-44.66,0-94.15,20.52-125.94,52.31l-22.93,23.34c-19.72,19.31-52.31,32.99-80.07,32.99h-51.1c-18.51,0-28.17-9.66-28.17-28.16v-96.57c0-18.51,9.65-28.16,28.17-28.16h257.51c18.51,0,28.17,9.65,28.17,28.16v16.09Z"/><path fill="#2176ff" d="M368.82,280.04l-81.29-180.53C254.69,25.09,213.98,0,126.1,0H0v283.77h70.82V55.12h55.27c28.73,0,68.09,11.59,92.55,66.99l73,161.67h148.56V1.38h-71.39v278.66Z"/>
+              </svg>
+            </div>
+            <div class="logo-dont-label">Não recolorir o logo</div>
+          </div>
+
+          <div class="logo-dont-card">
+            <div class="logo-dont-preview" style="background:#f7f7f7;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1890.04 283.77" style="height:22px;width:auto;filter:drop-shadow(3px 3px 6px rgba(0,0,0,0.4));">
+                <path fill="#141414" d="M481.7,93.04v96.57c0,53.92,38.63,92.54,92.54,92.54h350.06v-64.38h-350.06c-18.51,0-28.17-9.66-28.17-28.16v-16.1h378.22v-64.38h-378.22v-16.09c0-18.51,9.66-28.16,28.17-28.16h350.06V.5h-350.06c-53.92,0-92.54,38.63-92.54,92.54Z"/><path fill="#141414" d="M1342.79,189.61c0,18.51-9.66,28.16-28.16,28.16h-257.52c-18.51,0-28.17-9.66-28.17-28.16V.5h-64.38v189.11c0,53.92,38.63,92.54,92.54,92.54h257.52c53.92,0,92.54-38.63,92.54-92.54V.5h-64.38v189.11Z"/><path fill="#141414" d="M1797.49.5h-257.51c-53.92,0-92.54,38.63-92.54,92.54v96.57c0,53.92,38.63,92.54,92.54,92.54h51.1c44.66,0,94.15-20.52,125.94-52.31l22.94-23.34c19.72-19.31,52.31-33,80.07-33h5.64v108.64h64.38V93.04c0-53.92-38.63-92.54-92.54-92.54ZM1825.66,109.14h-5.64c-44.66,0-94.15,20.52-125.94,52.31l-22.93,23.34c-19.72,19.31-52.31,32.99-80.07,32.99h-51.1c-18.51,0-28.17-9.66-28.17-28.16v-96.57c0-18.51,9.65-28.16,28.17-28.16h257.51c18.51,0,28.17,9.65,28.17,28.16v16.09Z"/><path fill="#141414" d="M368.82,280.04l-81.29-180.53C254.69,25.09,213.98,0,126.1,0H0v283.77h70.82V55.12h55.27c28.73,0,68.09,11.59,92.55,66.99l73,161.67h148.56V1.38h-71.39v278.66Z"/>
+              </svg>
+            </div>
+            <div class="logo-dont-label">Não adicionar sombra ou efeitos</div>
+          </div>
+
+          <div class="logo-dont-card">
+            <div class="logo-dont-preview" style="background:#2d6a4f;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1890.04 283.77" style="height:22px;width:auto;">
+                <path fill="#ffffff" d="M481.7,93.04v96.57c0,53.92,38.63,92.54,92.54,92.54h350.06v-64.38h-350.06c-18.51,0-28.17-9.66-28.17-28.16v-16.1h378.22v-64.38h-378.22v-16.09c0-18.51,9.66-28.16,28.17-28.16h350.06V.5h-350.06c-53.92,0-92.54,38.63-92.54,92.54Z"/><path fill="#ffffff" d="M1342.79,189.61c0,18.51-9.66,28.16-28.16,28.16h-257.52c-18.51,0-28.17-9.66-28.17-28.16V.5h-64.38v189.11c0,53.92,38.63,92.54,92.54,92.54h257.52c53.92,0,92.54-38.63,92.54-92.54V.5h-64.38v189.11Z"/><path fill="#ffffff" d="M1797.49.5h-257.51c-53.92,0-92.54,38.63-92.54,92.54v96.57c0,53.92,38.63,92.54,92.54,92.54h51.1c44.66,0,94.15-20.52,125.94-52.31l22.94-23.34c19.72-19.31,52.31-33,80.07-33h5.64v108.64h64.38V93.04c0-53.92-38.63-92.54-92.54-92.54ZM1825.66,109.14h-5.64c-44.66,0-94.15,20.52-125.94,52.31l-22.93,23.34c-19.72,19.31-52.31,32.99-80.07,32.99h-51.1c-18.51,0-28.17-9.66-28.17-28.16v-96.57c0-18.51,9.65-28.16,28.17-28.16h257.51c18.51,0,28.17,9.65,28.17,28.16v16.09Z"/><path fill="#ffffff" d="M368.82,280.04l-81.29-180.53C254.69,25.09,213.98,0,126.1,0H0v283.77h70.82V55.12h55.27c28.73,0,68.09,11.59,92.55,66.99l73,161.67h148.56V1.38h-71.39v278.66Z"/>
+              </svg>
+            </div>
+            <div class="logo-dont-label">Não usar sobre fundo colorido</div>
+          </div>
+
+          <div class="logo-dont-card">
+            <div class="logo-dont-preview" style="background:#f7f7f7;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1890.04 283.77" style="height:22px;width:auto;transform:rotate(-8deg);">
+                <path fill="#141414" d="M481.7,93.04v96.57c0,53.92,38.63,92.54,92.54,92.54h350.06v-64.38h-350.06c-18.51,0-28.17-9.66-28.17-28.16v-16.1h378.22v-64.38h-378.22v-16.09c0-18.51,9.66-28.16,28.17-28.16h350.06V.5h-350.06c-53.92,0-92.54,38.63-92.54,92.54Z"/><path fill="#141414" d="M1342.79,189.61c0,18.51-9.66,28.16-28.16,28.16h-257.52c-18.51,0-28.17-9.66-28.17-28.16V.5h-64.38v189.11c0,53.92,38.63,92.54,92.54,92.54h257.52c53.92,0,92.54-38.63,92.54-92.54V.5h-64.38v189.11Z"/><path fill="#141414" d="M1797.49.5h-257.51c-53.92,0-92.54,38.63-92.54,92.54v96.57c0,53.92,38.63,92.54,92.54,92.54h51.1c44.66,0,94.15-20.52,125.94-52.31l22.94-23.34c19.72-19.31,52.31-33,80.07-33h5.64v108.64h64.38V93.04c0-53.92-38.63-92.54-92.54-92.54ZM1825.66,109.14h-5.64c-44.66,0-94.15,20.52-125.94,52.31l-22.93,23.34c-19.72,19.31-52.31,32.99-80.07,32.99h-51.1c-18.51,0-28.17-9.66-28.17-28.16v-96.57c0-18.51,9.65-28.16,28.17-28.16h257.51c18.51,0,28.17,9.65,28.17,28.16v16.09Z"/><path fill="#141414" d="M368.82,280.04l-81.29-180.53C254.69,25.09,213.98,0,126.1,0H0v283.77h70.82V55.12h55.27c28.73,0,68.09,11.59,92.55,66.99l73,161.67h148.56V1.38h-71.39v278.66Z"/>
+              </svg>
+            </div>
+            <div class="logo-dont-label">Não rotacionar ou inclinar</div>
+          </div>
+
+        </div>
+      </div>
+
+      <style>
+        .logo-block {
+          margin-bottom: var(--space-16);
+        }
+        .logo-block-title {
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          font-weight: var(--weight-semibold);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          color: var(--color-gray-400);
+          margin-bottom: var(--space-6);
+          padding-bottom: var(--space-4);
+          border-bottom: 1px solid var(--color-gray-100);
+        }
+
+        /* Variações */
+        .logo-variants-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: var(--space-4);
+        }
+        .logo-variant-card {
+          border: 1px solid var(--color-gray-100);
+          border-radius: var(--radius-xl);
+          overflow: hidden;
+          background: var(--color-white);
+          transition: box-shadow var(--transition-base);
+        }
+        .logo-variant-card:hover { box-shadow: var(--shadow-md); }
+        .logo-variant-label {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          padding: var(--space-4) var(--space-5);
+          border-bottom: 1px solid var(--color-gray-100);
+        }
+        .logo-variant-name {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          font-weight: var(--weight-semibold);
+          color: var(--color-black);
+        }
+        .logo-variant-file {
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          color: var(--color-gray-400);
+          letter-spacing: var(--tracking-wide);
+        }
+        .logo-variant-use {
+          padding: var(--space-2) var(--space-5);
+          font-size: var(--text-xs);
+          color: var(--color-gray-400);
+          border-bottom: 1px solid var(--color-gray-100);
+        }
+        .logo-preview {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: var(--space-8) var(--space-8);
+          min-height: 100px;
+        }
+        .logo-preview--light { background: var(--color-white); }
+        .logo-preview--dark  { background: var(--color-black); }
+
+        /* Área de proteção */
+        .logo-clearance-wrap {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          gap: var(--space-12);
+          align-items: start;
+        }
+        .logo-clearance-demo {
+          flex-shrink: 0;
+        }
+        .logo-clearance-zone {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .logo-clearance-inner {
+          padding: 40px;
+          border: 1px dashed var(--color-blue);
+          border-radius: var(--radius-md);
+          background: var(--color-white);
+        }
+        .logo-clearance-mark {
+          position: absolute;
+          font-family: var(--font-secondary);
+          font-size: 11px;
+          font-weight: var(--weight-bold);
+          color: var(--color-blue);
+          background: var(--color-blue-light);
+          padding: 2px 6px;
+          border-radius: 4px;
+        }
+        .logo-clearance-mark--top    { top: 4px;    left: 50%; transform: translateX(-50%); }
+        .logo-clearance-mark--bottom { bottom: 4px; left: 50%; transform: translateX(-50%); }
+        .logo-clearance-mark--left   { left: 4px;   top: 50%;  transform: translateY(-50%); }
+        .logo-clearance-mark--right  { right: 4px;  top: 50%;  transform: translateY(-50%); }
+        .logo-clearance-rule {
+          font-size: var(--text-sm);
+          color: var(--color-gray-600);
+          line-height: var(--leading-relaxed);
+          margin-bottom: var(--space-4);
+        }
+        .logo-clearance-rule strong { color: var(--color-black); }
+        .logo-clearance-list {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-2);
+          margin-bottom: var(--space-6);
+        }
+        .logo-clearance-list li {
+          font-size: var(--text-sm);
+          color: var(--color-gray-500);
+          padding-left: var(--space-4);
+          position: relative;
+          line-height: var(--leading-relaxed);
+        }
+        .logo-clearance-list li::before { content: '–'; position: absolute; left: 0; color: var(--color-gray-300); }
+
+        /* Tabela de tamanhos */
+        .logo-size-table {
+          border: 1px solid var(--color-gray-100);
+          border-radius: var(--radius-md);
+          overflow: hidden;
+        }
+        .logo-size-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1.5fr;
+          padding: var(--space-3) var(--space-4);
+          border-bottom: 1px solid var(--color-gray-100);
+          font-size: var(--text-sm);
+          color: var(--color-gray-600);
+          gap: var(--space-4);
+        }
+        .logo-size-row:last-child { border-bottom: none; }
+        .logo-size-row--header {
+          background: var(--color-gray-50);
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          font-weight: var(--weight-semibold);
+          letter-spacing: var(--tracking-wider);
+          text-transform: uppercase;
+          color: var(--color-gray-400);
+        }
+
+        /* Don'ts */
+        .logo-donts-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--space-4);
+        }
+        .logo-dont-card {
+          border: 1px solid var(--color-gray-100);
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+        }
+        .logo-dont-preview {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 88px;
+          position: relative;
+        }
+        .logo-dont-preview::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: rgba(229,57,53,0.06);
+          pointer-events: none;
+        }
+        .logo-dont-label {
+          padding: var(--space-3) var(--space-4);
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          font-weight: var(--weight-medium);
+          color: var(--color-gray-500);
+          background: var(--color-white);
+          border-top: 1px solid var(--color-gray-100);
+        }
+
+        @media (max-width: 900px) {
+          .logo-variants-grid { grid-template-columns: 1fr; }
+          .logo-donts-grid    { grid-template-columns: repeat(2, 1fr); }
+          .logo-clearance-wrap { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+          .logo-donts-grid { grid-template-columns: 1fr 1fr; }
+          .logo-size-row   { grid-template-columns: 1fr 1fr; }
+          .logo-size-row > span:last-child { display: none; }
+          .logo-size-row--header > span:last-child { display: none; }
+        }
+      </style>
+    </section>
+
+    <!-- ====================================================
+         F — BOTÕES (placeholder)
+    ==================================================== -->
+    <section id="botoes" class="ds-section">
+      <div class="ds-section-header">
+        <span class="ds-section-tag">F — Botões</span>
+        <h2 class="ds-section-title">Botões</h2>
+        <p class="ds-section-desc">Quatro variações com tamanhos sm/md/lg. Azul reservado para CTAs de conversão. Preto como ação padrão. Todos os estados documentados.</p>
+      </div>
+
+      <!-- Variações -->
+      <div class="btn-block">
+        <h3 class="btn-block-title">Variações</h3>
+
+        <!-- Fundo claro -->
+        <div class="btn-canvas btn-canvas--light">
+          <div class="btn-canvas-label">Fundo claro</div>
+          <div class="btn-row">
+            <div class="btn-item">
+              <button class="btn btn--primary">Primário</button>
+              <span class="btn-item-name">Primário</span>
+            </div>
+            <div class="btn-item">
+              <button class="btn btn--cta">Entrar no grupo</button>
+              <span class="btn-item-name">CTA — Azul</span>
+            </div>
+            <div class="btn-item">
+              <button class="btn btn--secondary">Secundário</button>
+              <span class="btn-item-name">Secundário</span>
+            </div>
+            <div class="btn-item">
+              <button class="btn btn--ghost">Ghost</button>
+              <span class="btn-item-name">Ghost</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fundo escuro -->
+        <div class="btn-canvas btn-canvas--dark">
+          <div class="btn-canvas-label">Fundo escuro</div>
+          <div class="btn-row">
+            <div class="btn-item">
+              <button class="btn btn--primary-dark">Primário</button>
+              <span class="btn-item-name btn-item-name--light">Primário</span>
+            </div>
+            <div class="btn-item">
+              <button class="btn btn--cta">Entrar no grupo</button>
+              <span class="btn-item-name btn-item-name--light">CTA — Azul</span>
+            </div>
+            <div class="btn-item">
+              <button class="btn btn--secondary-dark">Secundário</button>
+              <span class="btn-item-name btn-item-name--light">Secundário</span>
+            </div>
+            <div class="btn-item">
+              <button class="btn btn--ghost-dark">Ghost</button>
+              <span class="btn-item-name btn-item-name--light">Ghost</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tamanhos -->
+      <div class="btn-block">
+        <h3 class="btn-block-title">Tamanhos</h3>
+        <div class="btn-canvas btn-canvas--light">
+          <div class="btn-row btn-row--sizes">
+            <div class="btn-item">
+              <button class="btn btn--primary btn--sm">Botão sm</button>
+              <span class="btn-item-name">sm — 36px</span>
+            </div>
+            <div class="btn-item">
+              <button class="btn btn--primary btn--md">Botão md</button>
+              <span class="btn-item-name">md — 44px</span>
+            </div>
+            <div class="btn-item">
+              <button class="btn btn--primary btn--lg">Botão lg</button>
+              <span class="btn-item-name">lg — 52px</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estados -->
+      <div class="btn-block">
+        <h3 class="btn-block-title">Estados</h3>
+        <div class="btn-states-grid">
+
+          <div class="btn-state-card">
+            <div class="btn-state-preview btn-state-preview--light">
+              <button class="btn btn--primary">Default</button>
+            </div>
+            <div class="btn-state-info">
+              <span class="btn-state-name">Default</span>
+              <span class="btn-state-desc">Estado de repouso</span>
+            </div>
+          </div>
+
+          <div class="btn-state-card">
+            <div class="btn-state-preview btn-state-preview--light">
+              <button class="btn btn--primary btn--hover-demo">Hover</button>
+            </div>
+            <div class="btn-state-info">
+              <span class="btn-state-name">Hover</span>
+              <span class="btn-state-desc">Opacidade 0.88, cursor pointer</span>
+            </div>
+          </div>
+
+          <div class="btn-state-card">
+            <div class="btn-state-preview btn-state-preview--light">
+              <button class="btn btn--primary btn--active-demo">Active</button>
+            </div>
+            <div class="btn-state-info">
+              <span class="btn-state-name">Active / Pressed</span>
+              <span class="btn-state-desc">Scale 0.97, 100ms ease</span>
+            </div>
+          </div>
+
+          <div class="btn-state-card">
+            <div class="btn-state-preview btn-state-preview--light">
+              <button class="btn btn--primary btn--focus-demo">Focus</button>
+            </div>
+            <div class="btn-state-info">
+              <span class="btn-state-name">Focus</span>
+              <span class="btn-state-desc">Ring 2px offset 2px — azul</span>
+            </div>
+          </div>
+
+          <div class="btn-state-card">
+            <div class="btn-state-preview btn-state-preview--light">
+              <button class="btn btn--primary" disabled>Disabled</button>
+            </div>
+            <div class="btn-state-info">
+              <span class="btn-state-name">Disabled</span>
+              <span class="btn-state-desc">Gray 100 bg, gray 400 text, cursor not-allowed</span>
+            </div>
+          </div>
+
+          <div class="btn-state-card">
+            <div class="btn-state-preview btn-state-preview--light">
+              <button class="btn btn--primary btn--loading">
+                <span class="btn-spinner"></span>
+                Carregando
+              </button>
+            </div>
+            <div class="btn-state-info">
+              <span class="btn-state-name">Loading</span>
+              <span class="btn-state-desc">Spinner + texto, pointer-events none</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Com ícone -->
+      <div class="btn-block">
+        <h3 class="btn-block-title">Com ícone</h3>
+        <div class="btn-canvas btn-canvas--light">
+          <div class="btn-row">
+            <div class="btn-item">
+              <button class="btn btn--primary btn--icon-left">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                Ícone à esquerda
+              </button>
+              <span class="btn-item-name">Ícone esquerda</span>
+            </div>
+            <div class="btn-item">
+              <button class="btn btn--primary btn--icon-right">
+                Ícone à direita
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+              <span class="btn-item-name">Ícone direita</span>
+            </div>
+            <div class="btn-item">
+              <button class="btn btn--secondary btn--icon-only" aria-label="Seta">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+              <span class="btn-item-name">Apenas ícone</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabela de especificações -->
+      <div class="btn-block">
+        <h3 class="btn-block-title">Especificações</h3>
+        <div class="btn-spec-table">
+          <div class="btn-spec-row btn-spec-row--header">
+            <span>Variação</span>
+            <span>Bg</span>
+            <span>Texto</span>
+            <span>Borda</span>
+            <span>Uso</span>
+          </div>
+          <div class="btn-spec-row">
+            <span><strong>Primário</strong></span>
+            <span>#141414</span>
+            <span>#ffffff</span>
+            <span>nenhuma</span>
+            <span>Ação principal em fundos claros</span>
+          </div>
+          <div class="btn-spec-row">
+            <span><strong>CTA — Azul</strong></span>
+            <span>#2176ff</span>
+            <span>#ffffff</span>
+            <span>nenhuma</span>
+            <span>Conversão — usar com parcimônia</span>
+          </div>
+          <div class="btn-spec-row">
+            <span><strong>Secundário</strong></span>
+            <span>transparent</span>
+            <span>#141414</span>
+            <span>1px #141414</span>
+            <span>Ação secundária, par com primário</span>
+          </div>
+          <div class="btn-spec-row">
+            <span><strong>Ghost</strong></span>
+            <span>transparent</span>
+            <span>#141414</span>
+            <span>nenhuma</span>
+            <span>Ações terciárias, nav, dismiss</span>
+          </div>
+          <div class="btn-spec-row">
+            <span><strong>Primário dark</strong></span>
+            <span>#ffffff</span>
+            <span>#141414</span>
+            <span>nenhuma</span>
+            <span>Ação principal em fundos escuros</span>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        /* ---- Base ---- */
+        .btn-block {
+          margin-bottom: var(--space-16);
+        }
+        .btn-block-title {
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          font-weight: var(--weight-semibold);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          color: var(--color-gray-400);
+          margin-bottom: var(--space-6);
+          padding-bottom: var(--space-4);
+          border-bottom: 1px solid var(--color-gray-100);
+        }
+
+        /* ---- Canvas ---- */
+        .btn-canvas {
+          border-radius: var(--radius-xl);
+          padding: var(--space-10) var(--space-8);
+          position: relative;
+          margin-bottom: var(--space-4);
+        }
+        .btn-canvas--light { background: var(--color-white); border: 1px solid var(--color-gray-100); }
+        .btn-canvas--dark  { background: var(--color-black); border: 1px solid var(--color-gray-800); }
+        .btn-canvas-label {
+          position: absolute;
+          top: var(--space-3);
+          left: var(--space-5);
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          font-weight: var(--weight-medium);
+          letter-spacing: var(--tracking-wider);
+          text-transform: uppercase;
+          color: var(--color-gray-400);
+        }
+        .btn-canvas--dark .btn-canvas-label { color: var(--color-gray-600); }
+
+        /* ---- Row ---- */
+        .btn-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--space-6);
+          align-items: flex-end;
+        }
+        .btn-row--sizes { align-items: center; }
+        .btn-item {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: var(--space-3);
+        }
+        .btn-item-name {
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          letter-spacing: var(--tracking-wide);
+          color: var(--color-gray-400);
+          text-transform: uppercase;
+        }
+        .btn-item-name--light { color: var(--color-gray-600); }
+
+        /* ---- Button base ---- */
+        .btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: var(--space-2);
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          font-weight: var(--weight-semibold);
+          letter-spacing: -0.01em;
+          border: none;
+          border-radius: var(--radius-full);
+          cursor: pointer;
+          transition: background var(--transition-fast), opacity var(--transition-fast), transform 100ms ease, box-shadow var(--transition-fast);
+          white-space: nowrap;
+          line-height: 1;
+          /* tamanho padrão md */
+          height: 44px;
+          padding: 0 var(--space-6);
+        }
+        .btn:focus-visible {
+          outline: 2px solid var(--color-blue);
+          outline-offset: 2px;
+        }
+        .btn:active:not(:disabled) { transform: scale(0.97); }
+
+        /* ---- Variações ---- */
+        .btn--primary {
+          background: var(--color-black);
+          color: var(--color-white);
+        }
+        .btn--primary:hover:not(:disabled) { opacity: 0.88; }
+
+        .btn--primary-dark {
+          background: var(--color-white);
+          color: var(--color-black);
+        }
+        .btn--primary-dark:hover:not(:disabled) { opacity: 0.88; }
+
+        .btn--cta {
+          background: var(--color-blue);
+          color: var(--color-white);
+        }
+        .btn--cta:hover:not(:disabled) { background: var(--color-blue-hover); }
+
+        .btn--secondary {
+          background: transparent;
+          color: var(--color-black);
+          border: 1px solid var(--color-black);
+        }
+        .btn--secondary:hover:not(:disabled) { background: var(--color-gray-50); }
+
+        .btn--secondary-dark {
+          background: transparent;
+          color: var(--color-white);
+          border: 1px solid rgba(255,255,255,0.3);
+        }
+        .btn--secondary-dark:hover:not(:disabled) { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.6); }
+
+        .btn--ghost {
+          background: transparent;
+          color: var(--color-black);
+        }
+        .btn--ghost:hover:not(:disabled) { background: var(--color-gray-50); }
+
+        .btn--ghost-dark {
+          background: transparent;
+          color: var(--color-white);
+        }
+        .btn--ghost-dark:hover:not(:disabled) { background: rgba(255,255,255,0.06); }
+
+        /* ---- Disabled ---- */
+        .btn:disabled {
+          background: var(--color-gray-100) !important;
+          color: var(--color-gray-400) !important;
+          border-color: transparent !important;
+          cursor: not-allowed;
+          opacity: 1;
+        }
+
+        /* ---- Tamanhos ---- */
+        .btn--sm { height: 36px; padding: 0 var(--space-5); font-size: var(--text-xs); }
+        .btn--md { height: 44px; padding: 0 var(--space-6); }
+        .btn--lg { height: 52px; padding: 0 var(--space-8); font-size: var(--text-base); }
+
+        /* ---- Ícone ---- */
+        .btn--icon-left svg, .btn--icon-right svg { flex-shrink: 0; }
+        .btn--icon-only {
+          width: 44px;
+          height: 44px;
+          padding: 0;
+          border-radius: var(--radius-full);
+        }
+
+        /* ---- Estados demo ---- */
+        .btn--hover-demo { opacity: 0.88; }
+        .btn--active-demo { transform: scale(0.97); }
+        .btn--focus-demo { outline: 2px solid var(--color-blue); outline-offset: 2px; }
+
+        /* ---- Loading ---- */
+        .btn--loading {
+          pointer-events: none;
+          opacity: 0.8;
+        }
+        .btn-spinner {
+          width: 14px;
+          height: 14px;
+          border: 2px solid rgba(255,255,255,0.3);
+          border-top-color: #ffffff;
+          border-radius: 50%;
+          animation: btn-spin 0.65s linear infinite;
+          flex-shrink: 0;
+        }
+        @keyframes btn-spin { to { transform: rotate(360deg); } }
+
+        /* ---- States grid ---- */
+        .btn-states-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--space-4);
+        }
+        .btn-state-card {
+          border: 1px solid var(--color-gray-100);
+          border-radius: var(--radius-xl);
+          overflow: hidden;
+        }
+        .btn-state-preview {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: var(--space-8) var(--space-6);
+          min-height: 88px;
+        }
+        .btn-state-preview--light { background: var(--color-gray-50); }
+        .btn-state-info {
+          padding: var(--space-3) var(--space-5);
+          border-top: 1px solid var(--color-gray-100);
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          background: var(--color-white);
+        }
+        .btn-state-name {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          font-weight: var(--weight-semibold);
+          color: var(--color-black);
+        }
+        .btn-state-desc {
+          font-family: var(--font-secondary);
+          font-size: 11px;
+          color: var(--color-gray-400);
+          letter-spacing: 0;
+        }
+
+        /* ---- Spec table ---- */
+        .btn-spec-table {
+          border: 1px solid var(--color-gray-100);
+          border-radius: var(--radius-md);
+          overflow: hidden;
+        }
+        .btn-spec-row {
+          display: grid;
+          grid-template-columns: 1.2fr 1fr 1fr 1.2fr 2fr;
+          padding: var(--space-3) var(--space-4);
+          border-bottom: 1px solid var(--color-gray-100);
+          font-size: var(--text-sm);
+          color: var(--color-gray-600);
+          gap: var(--space-4);
+          align-items: center;
+        }
+        .btn-spec-row:last-child { border-bottom: none; }
+        .btn-spec-row--header {
+          background: var(--color-gray-50);
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          font-weight: var(--weight-semibold);
+          letter-spacing: var(--tracking-wider);
+          text-transform: uppercase;
+          color: var(--color-gray-400);
+        }
+        .btn-spec-row strong { color: var(--color-black); font-weight: var(--weight-semibold); }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 900px) {
+          .btn-states-grid { grid-template-columns: repeat(2, 1fr); }
+          .btn-spec-row {
+            grid-template-columns: 1.2fr 1fr 1fr;
+          }
+          .btn-spec-row > span:nth-child(4),
+          .btn-spec-row > span:nth-child(5) { display: none; }
+        }
+        @media (max-width: 640px) {
+          .btn-states-grid { grid-template-columns: 1fr 1fr; }
+          .btn-row { gap: var(--space-4); }
+          .btn-spec-row { grid-template-columns: 1.5fr 1fr; }
+          .btn-spec-row > span:nth-child(3),
+          .btn-spec-row > span:nth-child(4),
+          .btn-spec-row > span:nth-child(5) { display: none; }
+        }
+      </style>
+    </section>
+
+    <!-- ====================================================
+         G — INPUTS (placeholder)
+    ==================================================== -->
+    <section id="inputs" class="ds-section">
+      <div class="ds-section-header">
+        <span class="ds-section-tag">G — Inputs</span>
+        <h2 class="ds-section-title">Inputs &amp; Formulários</h2>
+        <p class="ds-section-desc">Campos de texto, select, textarea e checkbox. Estilo minimalista — borda sutil, foco azul, estados documentados.</p>
+      </div>
+
+      <!-- Variações de campo -->
+      <div class="inp-block">
+        <h3 class="inp-block-title">Variações de campo</h3>
+        <div class="inp-variants-grid">
+
+          <!-- Default -->
+          <div class="inp-field-demo">
+            <label class="inp-label">Nome completo</label>
+            <input class="inp" type="text" placeholder="Ex: Carlos Pontelo" />
+            <span class="inp-demo-tag">Default</span>
+          </div>
+
+          <!-- Com valor preenchido -->
+          <div class="inp-field-demo">
+            <label class="inp-label">E-mail</label>
+            <input class="inp inp--filled" type="email" value="carlos@neua.com.br" />
+            <span class="inp-demo-tag">Preenchido</span>
+          </div>
+
+          <!-- Focus -->
+          <div class="inp-field-demo">
+            <label class="inp-label">Telefone</label>
+            <input class="inp inp--focus-demo" type="tel" placeholder="(11) 99999-9999" />
+            <span class="inp-demo-tag">Focus</span>
+          </div>
+
+          <!-- Erro -->
+          <div class="inp-field-demo">
+            <label class="inp-label inp-label--error">E-mail</label>
+            <input class="inp inp--error" type="email" value="email-invalido" />
+            <span class="inp-hint inp-hint--error">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              E-mail inválido
+            </span>
+            <span class="inp-demo-tag">Erro</span>
+          </div>
+
+          <!-- Sucesso -->
+          <div class="inp-field-demo">
+            <label class="inp-label">CPF</label>
+            <input class="inp inp--success" type="text" value="123.456.789-00" />
+            <span class="inp-hint inp-hint--success">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              CPF válido
+            </span>
+            <span class="inp-demo-tag">Sucesso</span>
+          </div>
+
+          <!-- Disabled -->
+          <div class="inp-field-demo">
+            <label class="inp-label inp-label--disabled">Código de convite</label>
+            <input class="inp" type="text" value="NEUA-VIP-2026" disabled />
+            <span class="inp-demo-tag">Disabled</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Com ícone e prefixo -->
+      <div class="inp-block">
+        <h3 class="inp-block-title">Com ícone e prefixo</h3>
+        <div class="inp-variants-grid">
+
+          <!-- Ícone à esquerda -->
+          <div class="inp-field-demo">
+            <label class="inp-label">E-mail</label>
+            <div class="inp-wrap inp-wrap--icon-left">
+              <svg class="inp-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <input class="inp inp--icon-left" type="email" placeholder="seu@email.com" />
+            </div>
+            <span class="inp-demo-tag">Ícone esquerda</span>
+          </div>
+
+          <!-- Ícone à direita -->
+          <div class="inp-field-demo">
+            <label class="inp-label">Senha</label>
+            <div class="inp-wrap inp-wrap--icon-right">
+              <input class="inp inp--icon-right" type="password" value="senha123" />
+              <svg class="inp-icon inp-icon--right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <span class="inp-demo-tag">Ícone direita</span>
+          </div>
+
+          <!-- Prefixo -->
+          <div class="inp-field-demo">
+            <label class="inp-label">WhatsApp</label>
+            <div class="inp-wrap inp-wrap--prefix">
+              <span class="inp-prefix">+55</span>
+              <input class="inp inp--prefixed" type="tel" placeholder="(11) 99999-9999" />
+            </div>
+            <span class="inp-demo-tag">Prefixo</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Select e Textarea -->
+      <div class="inp-block">
+        <h3 class="inp-block-title">Select &amp; Textarea</h3>
+        <div class="inp-variants-grid">
+
+          <!-- Select -->
+          <div class="inp-field-demo">
+            <label class="inp-label">Segmento</label>
+            <div class="inp-wrap inp-wrap--select">
+              <select class="inp inp--select">
+                <option value="">Selecione...</option>
+                <option value="varejo">Varejo</option>
+                <option value="industria">Indústria</option>
+                <option value="servicos" selected>Serviços</option>
+                <option value="financeiro">Financeiro</option>
+              </select>
+              <svg class="inp-select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <span class="inp-demo-tag">Select</span>
+          </div>
+
+          <!-- Textarea -->
+          <div class="inp-field-demo inp-field-demo--wide">
+            <label class="inp-label">Mensagem</label>
+            <textarea class="inp inp--textarea" rows="4" placeholder="Escreva sua mensagem..."></textarea>
+            <span class="inp-hint">Máximo 500 caracteres</span>
+            <span class="inp-demo-tag">Textarea</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Checkbox e Radio -->
+      <div class="inp-block">
+        <h3 class="inp-block-title">Checkbox &amp; Radio</h3>
+        <div class="inp-checks-grid">
+
+          <div class="inp-check-group">
+            <label class="inp-check-label">
+              <input type="checkbox" class="inp-check" checked />
+              <span class="inp-check-custom"></span>
+              <span class="inp-check-text">Aceito os termos de uso</span>
+            </label>
+            <label class="inp-check-label">
+              <input type="checkbox" class="inp-check" />
+              <span class="inp-check-custom"></span>
+              <span class="inp-check-text">Receber novidades por e-mail</span>
+            </label>
+            <label class="inp-check-label">
+              <input type="checkbox" class="inp-check" disabled />
+              <span class="inp-check-custom"></span>
+              <span class="inp-check-text inp-check-text--disabled">Opção desabilitada</span>
+            </label>
+          </div>
+
+          <div class="inp-check-group">
+            <label class="inp-check-label">
+              <input type="radio" class="inp-radio" name="plano" value="mensal" checked />
+              <span class="inp-radio-custom"></span>
+              <span class="inp-check-text">Mensal</span>
+            </label>
+            <label class="inp-check-label">
+              <input type="radio" class="inp-radio" name="plano" value="anual" />
+              <span class="inp-radio-custom"></span>
+              <span class="inp-check-text">Anual</span>
+            </label>
+            <label class="inp-check-label">
+              <input type="radio" class="inp-radio" name="plano" value="vip" disabled />
+              <span class="inp-radio-custom"></span>
+              <span class="inp-check-text inp-check-text--disabled">VIP (indisponível)</span>
+            </label>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Formulário exemplo -->
+      <div class="inp-block">
+        <h3 class="inp-block-title">Formulário de exemplo — Landing VIP</h3>
+        <div class="inp-form-demo">
+          <p class="inp-form-demo-label">Pré-visualização do formulário de entrada no grupo</p>
+          <form class="inp-form" onsubmit="return false;">
+            <div class="inp-form-row">
+              <div class="inp-form-field">
+                <label class="inp-label">Nome completo</label>
+                <input class="inp" type="text" placeholder="Seu nome" />
+              </div>
+              <div class="inp-form-field">
+                <label class="inp-label">E-mail</label>
+                <div class="inp-wrap inp-wrap--icon-left">
+                  <svg class="inp-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <input class="inp inp--icon-left" type="email" placeholder="seu@email.com" />
+                </div>
+              </div>
+            </div>
+            <div class="inp-form-row">
+              <div class="inp-form-field">
+                <label class="inp-label">WhatsApp</label>
+                <div class="inp-wrap inp-wrap--prefix">
+                  <span class="inp-prefix">+55</span>
+                  <input class="inp inp--prefixed" type="tel" placeholder="(11) 99999-9999" />
+                </div>
+              </div>
+              <div class="inp-form-field">
+                <label class="inp-label">Segmento</label>
+                <div class="inp-wrap inp-wrap--select">
+                  <select class="inp inp--select">
+                    <option value="">Selecione seu segmento</option>
+                    <option value="varejo">Varejo</option>
+                    <option value="industria">Indústria</option>
+                    <option value="servicos">Serviços</option>
+                  </select>
+                  <svg class="inp-select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+              </div>
+            </div>
+            <label class="inp-check-label" style="margin-bottom: var(--space-6);">
+              <input type="checkbox" class="inp-check" />
+              <span class="inp-check-custom"></span>
+              <span class="inp-check-text">Aceito os <span style="text-decoration:underline;color:var(--color-black);">termos de uso</span> e a política de privacidade</span>
+            </label>
+            <button class="btn btn--cta btn--lg" style="width:100%;">Quero entrar no Grupo VIP</button>
+          </form>
+        </div>
+      </div>
+
+      <style>
+        /* ---- Base ---- */
+        .inp-block {
+          margin-bottom: var(--space-16);
+        }
+        .inp-block-title {
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          font-weight: var(--weight-semibold);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          color: var(--color-gray-400);
+          margin-bottom: var(--space-6);
+          padding-bottom: var(--space-4);
+          border-bottom: 1px solid var(--color-gray-100);
+        }
+
+        /* ---- Grid de variações ---- */
+        .inp-variants-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--space-6);
+        }
+
+        /* ---- Field demo wrapper ---- */
+        .inp-field-demo {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-2);
+          position: relative;
+        }
+        .inp-field-demo--wide {
+          grid-column: span 2;
+        }
+        .inp-demo-tag {
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          letter-spacing: var(--tracking-wide);
+          text-transform: uppercase;
+          color: var(--color-gray-300);
+          margin-top: var(--space-1);
+        }
+
+        /* ---- Label ---- */
+        .inp-label {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          font-weight: var(--weight-medium);
+          color: var(--color-black);
+          line-height: 1;
+        }
+        .inp-label--error    { color: var(--color-error); }
+        .inp-label--disabled { color: var(--color-gray-400); }
+
+        /* ---- Input base ---- */
+        .inp {
+          width: 100%;
+          height: 44px;
+          padding: 0 var(--space-4);
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          font-weight: var(--weight-regular);
+          color: var(--color-black);
+          background: var(--color-white);
+          border: 1px solid var(--color-gray-200);
+          border-radius: var(--radius-md);
+          outline: none;
+          transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+          appearance: none;
+          -webkit-appearance: none;
+        }
+        .inp::placeholder { color: var(--color-gray-400); }
+        .inp:focus {
+          border-color: var(--color-black);
+          box-shadow: 0 0 0 3px rgba(20,20,20,0.06);
+        }
+        .inp:disabled {
+          background: var(--color-gray-50);
+          color: var(--color-gray-400);
+          cursor: not-allowed;
+        }
+
+        /* ---- Variações de estado ---- */
+        .inp--filled { color: var(--color-black); }
+
+        .inp--focus-demo {
+          border-color: var(--color-black);
+          box-shadow: 0 0 0 3px rgba(20,20,20,0.06);
+        }
+
+        .inp--error {
+          border-color: var(--color-error);
+          box-shadow: 0 0 0 3px rgba(229,57,53,0.06);
+        }
+        .inp--error:focus {
+          border-color: var(--color-error);
+          box-shadow: 0 0 0 3px rgba(229,57,53,0.1);
+        }
+
+        .inp--success {
+          border-color: var(--color-success);
+          box-shadow: 0 0 0 3px rgba(30,126,52,0.06);
+        }
+
+        /* ---- Hint ---- */
+        .inp-hint {
+          display: flex;
+          align-items: center;
+          gap: var(--space-1);
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          color: var(--color-gray-400);
+          line-height: 1.4;
+        }
+        .inp-hint--error   { color: var(--color-error); }
+        .inp-hint--success { color: var(--color-success); }
+
+        /* ---- Wrap (ícone / prefixo / select) ---- */
+        .inp-wrap {
+          position: relative;
+          display: flex;
+          align-items: center;
+        }
+
+        .inp-wrap--icon-left .inp-icon {
+          position: absolute;
+          left: var(--space-4);
+          color: var(--color-gray-400);
+          pointer-events: none;
+          flex-shrink: 0;
+        }
+        .inp--icon-left { padding-left: calc(var(--space-4) + 16px + var(--space-3)); }
+
+        .inp-wrap--icon-right .inp-icon--right {
+          position: absolute;
+          right: var(--space-4);
+          color: var(--color-gray-400);
+          pointer-events: none;
+          flex-shrink: 0;
+        }
+        .inp--icon-right { padding-right: calc(var(--space-4) + 16px + var(--space-3)); }
+
+        .inp-wrap--prefix .inp-prefix {
+          position: absolute;
+          left: 0;
+          height: 100%;
+          padding: 0 var(--space-4);
+          display: flex;
+          align-items: center;
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          font-weight: var(--weight-medium);
+          color: var(--color-gray-500);
+          background: var(--color-gray-50);
+          border: 1px solid var(--color-gray-200);
+          border-right: none;
+          border-radius: var(--radius-md) 0 0 var(--radius-md);
+          white-space: nowrap;
+          pointer-events: none;
+        }
+        .inp--prefixed {
+          border-radius: 0 var(--radius-md) var(--radius-md) 0;
+          padding-left: calc(var(--space-4) + 36px);
+        }
+
+        /* ---- Select ---- */
+        .inp-wrap--select { position: relative; }
+        .inp--select {
+          cursor: pointer;
+          padding-right: calc(var(--space-4) + 20px);
+          background-image: none;
+        }
+        .inp-select-arrow {
+          position: absolute;
+          right: var(--space-4);
+          color: var(--color-gray-400);
+          pointer-events: none;
+          flex-shrink: 0;
+        }
+
+        /* ---- Textarea ---- */
+        .inp--textarea {
+          height: auto;
+          padding: var(--space-3) var(--space-4);
+          resize: vertical;
+          min-height: 108px;
+          line-height: var(--leading-relaxed);
+        }
+
+        /* ---- Checkbox & Radio ---- */
+        .inp-checks-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: var(--space-8);
+        }
+        .inp-check-group {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-3);
+        }
+        .inp-check-label {
+          display: flex;
+          align-items: center;
+          gap: var(--space-3);
+          cursor: pointer;
+          user-select: none;
+        }
+
+        /* Esconde o input nativo */
+        .inp-check, .inp-radio {
+          position: absolute;
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+
+        /* Checkbox custom */
+        .inp-check-custom {
+          width: 18px;
+          height: 18px;
+          border: 1.5px solid var(--color-gray-300);
+          border-radius: var(--radius-sm);
+          background: var(--color-white);
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: border-color var(--transition-fast), background var(--transition-fast);
+        }
+        .inp-check:checked + .inp-check-custom {
+          background: var(--color-black);
+          border-color: var(--color-black);
+        }
+        .inp-check:checked + .inp-check-custom::after {
+          content: '';
+          width: 10px;
+          height: 6px;
+          border-left: 2px solid #fff;
+          border-bottom: 2px solid #fff;
+          transform: rotate(-45deg) translateY(-1px);
+          display: block;
+        }
+        .inp-check:disabled + .inp-check-custom {
+          background: var(--color-gray-100);
+          border-color: var(--color-gray-200);
+          cursor: not-allowed;
+        }
+        .inp-check-label:hover .inp-check:not(:disabled):not(:checked) + .inp-check-custom {
+          border-color: var(--color-gray-500);
+        }
+
+        /* Radio custom */
+        .inp-radio-custom {
+          width: 18px;
+          height: 18px;
+          border: 1.5px solid var(--color-gray-300);
+          border-radius: 50%;
+          background: var(--color-white);
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: border-color var(--transition-fast), background var(--transition-fast);
+        }
+        .inp-radio:checked + .inp-radio-custom {
+          border-color: var(--color-black);
+        }
+        .inp-radio:checked + .inp-radio-custom::after {
+          content: '';
+          width: 8px;
+          height: 8px;
+          background: var(--color-black);
+          border-radius: 50%;
+          display: block;
+        }
+        .inp-radio:disabled + .inp-radio-custom {
+          background: var(--color-gray-100);
+          border-color: var(--color-gray-200);
+          cursor: not-allowed;
+        }
+        .inp-check-label:hover .inp-radio:not(:disabled):not(:checked) + .inp-radio-custom {
+          border-color: var(--color-gray-500);
+        }
+
+        /* Texto desabilitado */
+        .inp-check-text { font-size: var(--text-sm); color: var(--color-gray-600); line-height: 1.4; }
+        .inp-check-text--disabled { color: var(--color-gray-300); }
+
+        /* ---- Form demo ---- */
+        .inp-form-demo {
+          border: 1px solid var(--color-gray-100);
+          border-radius: var(--radius-xl);
+          overflow: hidden;
+        }
+        .inp-form-demo-label {
+          padding: var(--space-4) var(--space-6);
+          background: var(--color-gray-50);
+          border-bottom: 1px solid var(--color-gray-100);
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          font-weight: var(--weight-medium);
+          letter-spacing: var(--tracking-wider);
+          text-transform: uppercase;
+          color: var(--color-gray-400);
+        }
+        .inp-form {
+          padding: var(--space-8) var(--space-8);
+          background: var(--color-white);
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-5);
+        }
+        .inp-form-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-5);
+        }
+        .inp-form-field {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-2);
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 900px) {
+          .inp-variants-grid { grid-template-columns: repeat(2, 1fr); }
+          .inp-field-demo--wide { grid-column: span 1; }
+          .inp-form-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+          .inp-variants-grid { grid-template-columns: 1fr; }
+          .inp-checks-grid   { grid-template-columns: 1fr; }
+          .inp-form { padding: var(--space-6); }
+        }
+      </style>
+    </section>
+
+    <!-- ====================================================
+         H — CARDS (placeholder)
+    ==================================================== -->
+    <section id="cards" class="ds-section">
+      <div class="ds-section-header">
+        <span class="ds-section-tag">H — Cards</span>
+        <h2 class="ds-section-title">Cards</h2>
+        <p class="ds-section-desc">Padrão, destaque e VIP/premium. Todos os estados e variações de conteúdo usados na landing page.</p>
+      </div>
+
+      <!-- Card padrão -->
+      <div class="crd-block">
+        <h3 class="crd-block-title">Card padrão</h3>
+        <div class="crd-grid crd-grid--3">
+
+          <div class="crd">
+            <div class="crd-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <h4 class="crd-title">Acesso exclusivo</h4>
+            <p class="crd-body">Conteúdo e análises disponíveis apenas para membros do grupo VIP Neua.</p>
+          </div>
+
+          <div class="crd">
+            <div class="crd-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h4 class="crd-title">Atualizações em tempo real</h4>
+            <p class="crd-body">Notificações imediatas sobre tendências de mercado e oportunidades de negócio.</p>
+          </div>
+
+          <div class="crd">
+            <div class="crd-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h4 class="crd-title">Comunidade qualificada</h4>
+            <p class="crd-body">Rede de executivos e tomadores de decisão com curadoria rigorosa de entrada.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Card com borda de destaque -->
+      <div class="crd-block">
+        <h3 class="crd-block-title">Card de destaque</h3>
+        <div class="crd-grid crd-grid--3">
+
+          <div class="crd crd--featured">
+            <div class="crd-icon-wrap crd-icon-wrap--blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h4 class="crd-title">Networking premium</h4>
+            <p class="crd-body">Encontros mensais com líderes de mercado. Conexões que geram negócios reais.</p>
+            <a class="crd-link" href="#">Saiba mais
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <div class="crd crd--featured">
+            <div class="crd-icon-wrap crd-icon-wrap--blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <h4 class="crd-title">Inteligência de mercado</h4>
+            <p class="crd-body">Relatórios semanais com dados exclusivos sobre leilões e tendências do setor.</p>
+            <a class="crd-link" href="#">Saiba mais
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <div class="crd crd--featured">
+            <div class="crd-icon-wrap crd-icon-wrap--blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h4 class="crd-title">Suporte prioritário</h4>
+            <p class="crd-body">Canal direto com especialistas Neua. Resposta em até 2 horas em dias úteis.</p>
+            <a class="crd-link" href="#">Saiba mais
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Card VIP / Premium -->
+      <div class="crd-block">
+        <h3 class="crd-block-title">Card VIP — fundo escuro</h3>
+        <div class="crd-grid crd-grid--3">
+
+          <div class="crd crd--vip">
+            <div class="crd-vip-badge">VIP</div>
+            <div class="crd-icon-wrap crd-icon-wrap--dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+            <h4 class="crd-title crd-title--light">Acesso antecipado</h4>
+            <p class="crd-body crd-body--light">Primeiros a receber convites para eventos, lançamentos e ofertas especiais da plataforma.</p>
+          </div>
+
+          <div class="crd crd--vip">
+            <div class="crd-vip-badge">VIP</div>
+            <div class="crd-icon-wrap crd-icon-wrap--dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h4 class="crd-title crd-title--light">Curadoria exclusiva</h4>
+            <p class="crd-body crd-body--light">Conteúdo selecionado a dedo pela equipe Neua. Sem ruído, apenas o que importa para o seu negócio.</p>
+          </div>
+
+          <div class="crd crd--vip">
+            <div class="crd-vip-badge">VIP</div>
+            <div class="crd-icon-wrap crd-icon-wrap--dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </div>
+            <h4 class="crd-title crd-title--light">Condições especiais</h4>
+            <p class="crd-body crd-body--light">Descontos e facilidades exclusivos para membros do grupo em produtos e serviços Neua.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Card de prova social / depoimento -->
+      <div class="crd-block">
+        <h3 class="crd-block-title">Card de depoimento</h3>
+        <div class="crd-grid crd-grid--3">
+
+          <div class="crd crd--testimonial">
+            <div class="crd-quote-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+            </div>
+            <p class="crd-testimonial-text">Entrar no grupo VIP foi o melhor investimento do ano. As conexões que fiz nos primeiros dois meses valeram mais do que qualquer curso.</p>
+            <div class="crd-testimonial-author">
+              <div class="crd-author-avatar">RP</div>
+              <div>
+                <span class="crd-author-name">Ricardo Pinheiro</span>
+                <span class="crd-author-role">CEO — Grupo Fenix</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="crd crd--testimonial">
+            <div class="crd-quote-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+            </div>
+            <p class="crd-testimonial-text">A inteligência de mercado que recebo pelo grupo mudou a forma como tomo decisões. Informação filtrada e acionável, sem perder tempo.</p>
+            <div class="crd-testimonial-author">
+              <div class="crd-author-avatar">AM</div>
+              <div>
+                <span class="crd-author-name">Ana Meirelles</span>
+                <span class="crd-author-role">Diretora Comercial — Triunfo</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="crd crd--testimonial">
+            <div class="crd-quote-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+            </div>
+            <p class="crd-testimonial-text">Curadoria impecável. Cada conteúdo que chega tem relevância direta para o que estou enfrentando. Raríssimo num grupo desse tipo.</p>
+            <div class="crd-testimonial-author">
+              <div class="crd-author-avatar">LF</div>
+              <div>
+                <span class="crd-author-name">Lucas Faria</span>
+                <span class="crd-author-role">Sócio — LF Capital</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Card de métrica / número -->
+      <div class="crd-block">
+        <h3 class="crd-block-title">Card de métrica</h3>
+        <div class="crd-grid crd-grid--4">
+
+          <div class="crd crd--metric">
+            <span class="crd-metric-value">2.400<span class="crd-metric-unit">+</span></span>
+            <span class="crd-metric-label">Membros ativos</span>
+            <span class="crd-metric-delta crd-metric-delta--up">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+              +18% este mês
+            </span>
+          </div>
+
+          <div class="crd crd--metric">
+            <span class="crd-metric-value">R$<span class="crd-metric-num">47M</span></span>
+            <span class="crd-metric-label">Em negócios gerados</span>
+            <span class="crd-metric-delta crd-metric-delta--up">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+              +32% vs ano anterior
+            </span>
+          </div>
+
+          <div class="crd crd--metric">
+            <span class="crd-metric-value">98<span class="crd-metric-unit">%</span></span>
+            <span class="crd-metric-label">Taxa de retenção</span>
+            <span class="crd-metric-delta crd-metric-delta--neutral">Média dos últimos 12 meses</span>
+          </div>
+
+          <div class="crd crd--metric">
+            <span class="crd-metric-value">4.9<span class="crd-metric-unit">/5</span></span>
+            <span class="crd-metric-label">Avaliação média</span>
+            <span class="crd-metric-delta crd-metric-delta--up">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+              Baseado em 840 avaliações
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Estados do card -->
+      <div class="crd-block">
+        <h3 class="crd-block-title">Estados</h3>
+        <div class="crd-grid crd-grid--4">
+
+          <div class="crd">
+            <h4 class="crd-title">Default</h4>
+            <p class="crd-body">Estado de repouso. Borda sutil, sombra nenhuma.</p>
+            <span class="crd-state-tag">Default</span>
+          </div>
+
+          <div class="crd crd--hover-demo">
+            <h4 class="crd-title">Hover</h4>
+            <p class="crd-body">Sombra md, translateY -2px. Transição 250ms ease.</p>
+            <span class="crd-state-tag">Hover</span>
+          </div>
+
+          <div class="crd" style="opacity:0.5; pointer-events:none;">
+            <h4 class="crd-title">Disabled</h4>
+            <p class="crd-body">Opacidade 50%, cursor default, sem interação.</p>
+            <span class="crd-state-tag">Disabled</span>
+          </div>
+
+          <div class="crd crd--selected">
+            <h4 class="crd-title">Selecionado</h4>
+            <p class="crd-body">Borda azul 2px, sombra azul sutil.</p>
+            <span class="crd-state-tag">Selected</span>
+          </div>
+
+        </div>
+      </div>
+
+      <style>
+        /* ---- Base ---- */
+        .crd-block {
+          margin-bottom: var(--space-16);
+        }
+        .crd-block-title {
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          font-weight: var(--weight-semibold);
+          letter-spacing: var(--tracking-widest);
+          text-transform: uppercase;
+          color: var(--color-gray-400);
+          margin-bottom: var(--space-6);
+          padding-bottom: var(--space-4);
+          border-bottom: 1px solid var(--color-gray-100);
+        }
+
+        /* ---- Grid ---- */
+        .crd-grid {
+          display: grid;
+          gap: var(--space-4);
+        }
+        .crd-grid--3 { grid-template-columns: repeat(3, 1fr); }
+        .crd-grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+        /* ---- Card base ---- */
+        .crd {
+          background: var(--color-white);
+          border: 1px solid var(--color-gray-100);
+          border-radius: var(--radius-xl);
+          padding: var(--space-6);
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-3);
+          transition: box-shadow var(--transition-base), transform var(--transition-base), border-color var(--transition-base);
+          position: relative;
+        }
+        .crd:hover {
+          box-shadow: var(--shadow-md);
+          transform: translateY(-2px);
+        }
+
+        /* ---- Ícone ---- */
+        .crd-icon-wrap {
+          width: 40px;
+          height: 40px;
+          border-radius: var(--radius-md);
+          background: var(--color-gray-50);
+          border: 1px solid var(--color-gray-100);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--color-gray-700);
+          flex-shrink: 0;
+          margin-bottom: var(--space-1);
+        }
+        .crd-icon-wrap--blue {
+          background: var(--color-blue-light);
+          border-color: rgba(33,118,255,0.15);
+          color: var(--color-blue);
+        }
+        .crd-icon-wrap--dark {
+          background: rgba(255,255,255,0.08);
+          border-color: rgba(255,255,255,0.1);
+          color: rgba(255,255,255,0.8);
+        }
+
+        /* ---- Títulos e textos ---- */
+        .crd-title {
+          font-family: var(--font-primary);
+          font-size: var(--text-base);
+          font-weight: var(--weight-semibold);
+          color: var(--color-black);
+          line-height: var(--leading-snug);
+          letter-spacing: var(--tracking-snug);
+        }
+        .crd-title--light { color: var(--color-white); }
+
+        .crd-body {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          color: var(--color-gray-500);
+          line-height: var(--leading-relaxed);
+          flex: 1;
+        }
+        .crd-body--light { color: rgba(255,255,255,0.55); }
+
+        /* ---- Link ---- */
+        .crd-link {
+          display: inline-flex;
+          align-items: center;
+          gap: var(--space-1);
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          font-weight: var(--weight-semibold);
+          color: var(--color-blue);
+          letter-spacing: var(--tracking-wide);
+          text-transform: uppercase;
+          margin-top: var(--space-1);
+          transition: gap var(--transition-fast);
+        }
+        .crd-link:hover { gap: var(--space-2); }
+
+        /* ---- Destaque ---- */
+        .crd--featured {
+          border-color: rgba(33,118,255,0.2);
+        }
+        .crd--featured:hover {
+          border-color: rgba(33,118,255,0.4);
+          box-shadow: 0 4px 24px rgba(33,118,255,0.08), var(--shadow-md);
+        }
+
+        /* ---- VIP ---- */
+        .crd--vip {
+          background: var(--color-black);
+          border-color: var(--color-gray-800);
+        }
+        .crd--vip:hover {
+          border-color: var(--color-gray-700);
+          box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .crd-vip-badge {
+          position: absolute;
+          top: var(--space-4);
+          right: var(--space-4);
+          font-family: var(--font-secondary);
+          font-size: 9px;
+          font-weight: var(--weight-bold);
+          letter-spacing: var(--tracking-widest);
+          color: var(--color-blue);
+          border: 1px solid rgba(33,118,255,0.3);
+          border-radius: var(--radius-full);
+          padding: 2px 8px;
+          background: rgba(33,118,255,0.06);
+        }
+
+        /* ---- Depoimento ---- */
+        .crd--testimonial {
+          border-color: var(--color-gray-100);
+          gap: var(--space-4);
+        }
+        .crd-quote-icon {
+          color: var(--color-blue);
+          opacity: 0.6;
+        }
+        .crd-testimonial-text {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          color: var(--color-gray-700);
+          line-height: var(--leading-relaxed);
+          font-style: italic;
+          flex: 1;
+        }
+        .crd-testimonial-author {
+          display: flex;
+          align-items: center;
+          gap: var(--space-3);
+          padding-top: var(--space-3);
+          border-top: 1px solid var(--color-gray-100);
+        }
+        .crd-author-avatar {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: var(--color-black);
+          color: var(--color-white);
+          font-family: var(--font-primary);
+          font-size: var(--text-xs);
+          font-weight: var(--weight-bold);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          letter-spacing: 0.04em;
+        }
+        .crd-author-name {
+          display: block;
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          font-weight: var(--weight-semibold);
+          color: var(--color-black);
+          line-height: 1.2;
+        }
+        .crd-author-role {
+          display: block;
+          font-family: var(--font-secondary);
+          font-size: 11px;
+          color: var(--color-gray-400);
+          letter-spacing: 0;
+          margin-top: 1px;
+        }
+
+        /* ---- Métrica ---- */
+        .crd--metric {
+          gap: var(--space-2);
+          padding: var(--space-6) var(--space-5);
+        }
+        .crd-metric-value {
+          font-family: var(--font-primary);
+          font-size: var(--text-3xl);
+          font-weight: var(--weight-black);
+          color: var(--color-black);
+          letter-spacing: var(--tracking-tight);
+          line-height: 1;
+        }
+        .crd-metric-num {
+          font-size: var(--text-3xl);
+          font-weight: var(--weight-black);
+          letter-spacing: var(--tracking-tight);
+        }
+        .crd-metric-unit {
+          font-size: var(--text-xl);
+          font-weight: var(--weight-bold);
+          color: var(--color-gray-400);
+        }
+        .crd-metric-label {
+          font-family: var(--font-primary);
+          font-size: var(--text-sm);
+          color: var(--color-gray-500);
+          line-height: 1.3;
+        }
+        .crd-metric-delta {
+          display: inline-flex;
+          align-items: center;
+          gap: 3px;
+          font-family: var(--font-secondary);
+          font-size: 11px;
+          font-weight: var(--weight-medium);
+          margin-top: var(--space-1);
+        }
+        .crd-metric-delta--up      { color: var(--color-success); }
+        .crd-metric-delta--neutral { color: var(--color-gray-400); }
+
+        /* ---- Estados ---- */
+        .crd--hover-demo {
+          box-shadow: var(--shadow-md);
+          transform: translateY(-2px);
+        }
+        .crd--selected {
+          border: 2px solid var(--color-blue);
+          box-shadow: 0 0 0 3px rgba(33,118,255,0.08);
+        }
+        .crd-state-tag {
+          font-family: var(--font-secondary);
+          font-size: 10px;
+          letter-spacing: var(--tracking-wide);
+          text-transform: uppercase;
+          color: var(--color-gray-300);
+          margin-top: var(--space-2);
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 1024px) {
+          .crd-grid--4 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 900px) {
+          .crd-grid--3 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+          .crd-grid--3,
+          .crd-grid--4 { grid-template-columns: 1fr; }
+        }
+      </style>
+    </section>
+
+    <!-- ====================================================
+         I — ESPAÇAMENTO (placeholder)
+    ==================================================== -->
+    <section id="espacamento" class="ds-section">
+      <div class="ds-section-header">
+        <span class="ds-section-tag">I — Espaçamento</span>
+        <h2 class="ds-section-title">Espaçamento &amp; Grid</h2>
+        <p class="ds-section-desc">Em breve — sistema de spacing e grid de 12 colunas.</p>
+      </div>
+      <div class="ds-placeholder">Seção em construção</div>
+    </section>
+
+    <!-- ====================================================
+         J — ELEMENTOS UI (placeholder)
+    ==================================================== -->
+    <section id="elementos" class="ds-section">
+      <div class="ds-section-header">
+        <span class="ds-section-tag">J — Elementos UI</span>
+        <h2 class="ds-section-title">Elementos de Interface</h2>
+        <p class="ds-section-desc">Em breve — tags, dividers, ícones e listas.</p>
+      </div>
+      <div class="ds-placeholder">Seção em construção</div>
+    </section>
+
+    <!-- ====================================================
+         K — ANIMAÇÕES (placeholder)
+    ==================================================== -->
+    <section id="animacoes" class="ds-section">
+      <div class="ds-section-header">
+        <span class="ds-section-tag">K — Animações</span>
+        <h2 class="ds-section-title">Microinterações &amp; Animações</h2>
+        <p class="ds-section-desc">Em breve — transições, easing e hover states.</p>
+      </div>
+      <div class="ds-placeholder">Seção em construção</div>
+    </section>
+
+    <!-- ====================================================
+         L — COMPONENTES VIP (placeholder)
+    ==================================================== -->
+    <section id="landing" class="ds-section">
+      <div class="ds-section-header">
+        <span class="ds-section-tag">L — Landing VIP</span>
+        <h2 class="ds-section-title">Componentes da Landing VIP</h2>
+        <p class="ds-section-desc">Em breve — hero, benefícios, prova social e CTA.</p>
+      </div>
+      <div class="ds-placeholder">Seção em construção</div>
+    </section>
+
+  </main>
+</div>
+</body>
+</html>
