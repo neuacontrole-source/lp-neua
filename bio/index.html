@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TJL35DD9');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1266083025741061');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1266083025741061&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="neua — links oficiais. Loja, Grupo VIP no WhatsApp, produtos mais procurados e categorias." />
+  <title>neua — links oficiais</title>
+  <link rel="icon" type="image/png" href="/bio/favicon.png">
+  <link rel="apple-touch-icon" href="/bio/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-black:       #141414;
+      --color-bg:          #fafafa;
+      --color-surface:     #ffffff;
+      --color-white:       #ffffff;
+      --color-gray-100:    #f2f2f2;
+      --color-gray-200:    #e8e8e8;
+      --color-gray-300:    #d8d8d8;
+      --color-gray-400:    #b0b0b0;
+      --color-gray-500:    #888888;
+      --color-gray-600:    #5c5c5c;
+      --color-gray-700:    #3a3a3a;
+      --color-blue:        #2176ff;
+      --color-blue-hover:  #1a5fd9;
+      --color-whatsapp:        #25D366;
+      --color-whatsapp-hover:  #1ebe5a;
+
+      --font-primary:   'Inter Tight', sans-serif;
+      --font-secondary: 'Space Grotesk', sans-serif;
+
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --radius-full: 9999px;
+
+      --transition-fast: 150ms ease;
+      --transition-base: 250ms ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-primary);
+      background: var(--color-bg);
+      color: var(--color-black);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 40% at 50% 0%, rgba(33,118,255,0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+      animation: glowBreath 7s ease-in-out infinite;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ========== HEADER ========== */
+    .header {
+      padding: 56px 0 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .header__logo {
+      display: inline-block;
+      width: 180px;
+      max-width: 70%;
+      margin: 0 auto 16px;
+    }
+    .header__logo svg { width: 100%; height: auto; }
+    .header__tagline {
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--color-gray-500);
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+    }
+
+    /* ========== PRIMARY BUTTONS ========== */
+    .primary-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 4px 0 0;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 24px 24px;
+      border-radius: 14px;
+      font-family: var(--font-primary);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      transition: transform var(--transition-fast), background var(--transition-base), box-shadow var(--transition-base);
+      will-change: transform;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn--primary {
+      background: var(--color-blue);
+      color: var(--color-white);
+      box-shadow: 0 10px 22px -10px rgba(33,118,255,0.45);
+    }
+    .btn--primary:hover {
+      background: var(--color-blue-hover);
+      box-shadow: 0 14px 28px -10px rgba(33,118,255,0.55);
+      transform: translateY(-1px);
+    }
+    .btn--whatsapp {
+      background: var(--color-whatsapp);
+      color: var(--color-white);
+      box-shadow: 0 10px 22px -10px rgba(37,211,102,0.45);
+    }
+    .btn--whatsapp:hover {
+      background: var(--color-whatsapp-hover);
+      box-shadow: 0 14px 28px -10px rgba(37,211,102,0.55);
+      transform: translateY(-1px);
+    }
+    .btn__icon { width: 20px; height: 20px; flex-shrink: 0; }
+
+    /* ========== DIVIDER ========== */
+    .divider {
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(20,20,20,0.14) 22%,
+        rgba(20,20,20,0.14) 78%,
+        transparent 100%
+      );
+      margin: 36px 0 28px;
+    }
+
+    /* ========== SECTION TITLES ========== */
+    .section { margin-bottom: 32px; }
+    .section__title {
+      font-family: var(--font-secondary);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-gray-500);
+      margin-bottom: 14px;
+      padding-left: 4px;
+    }
+
+    /* ========== CUPOM (DARK) ========== */
+    .cupom {
+      position: relative;
+      background: var(--color-black);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      text-align: center;
+      margin-bottom: 32px;
+      overflow: hidden;
+      box-shadow: 0 12px 32px -14px rgba(20,20,20,0.35);
+    }
+    .cupom::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(33,118,255,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cupom > * { position: relative; z-index: 1; }
+    .cupom__title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--color-white);
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+    .cupom__support {
+      font-size: 13px;
+      color: var(--color-gray-400);
+      margin-bottom: 18px;
+    }
+    .cupom__code-wrap {
+      display: inline-block;
+      padding: 12px 28px;
+      border: 1px dashed rgba(255,255,255,0.32);
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.04);
+      margin-bottom: 16px;
+    }
+    .cupom__code {
+      font-family: var(--font-secondary);
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: var(--color-white);
+    }
+    .cupom__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 11px 24px;
+      background: var(--color-white);
+      color: var(--color-black);
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: background var(--transition-base), color var(--transition-base), transform var(--transition-fast);
+    }
+    .cupom__btn:hover { background: var(--color-gray-100); }
+    .cupom__btn:active { transform: scale(0.97); }
+    .cupom__btn--copied {
+      background: var(--color-blue);
+      color: var(--color-white);
+    }
+    .cupom__btn--copied:hover { background: var(--color-blue); }
+
+    /* ========== PRODUCT CARDS ========== */
+    .product-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .product {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 1px 2px rgba(20,20,20,0.03);
+      transition: background var(--transition-base), border-color var(--transition-base), transform var(--transition-fast), box-shadow var(--transition-base);
+    }
+    .product:hover {
+      border-color: var(--color-gray-300);
+      box-shadow: 0 6px 16px -6px rgba(20,20,20,0.08);
+    }
+    .product:active { transform: scale(0.99); }
+    .product__image {
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+      background: var(--color-gray-100);
+    }
+    .product__body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .product__name {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-black);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+    .product__support {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--color-gray-500);
+      line-height: 1.4;
+    }
+    .product__price {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-black);
+      margin-top: 4px;
+      letter-spacing: -0.01em;
+    }
+    .product__arrow {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      color: var(--color-gray-400);
+      transition: color var(--transition-base), transform var(--transition-base);
+    }
+    .product:hover .product__arrow {
+      color: var(--color-blue);
+      transform: translateX(2px);
+    }
+
+    /* ========== CATEGORIES (1 por linha, com ícone) ========== */
+    .cat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .cat {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-lg);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--color-black);
+      letter-spacing: -0.005em;
+      line-height: 1.25;
+      box-shadow: 0 1px 2px rgba(20,20,20,0.03);
+      transition: background var(--transition-base), border-color var(--transition-base), transform var(--transition-fast), box-shadow var(--transition-base);
+    }
+    .cat:hover {
+      border-color: var(--color-gray-300);
+      box-shadow: 0 4px 12px -4px rgba(20,20,20,0.08);
+    }
+    .cat:active { transform: scale(0.99); }
+    .cat__icon {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background: var(--color-gray-100);
+      color: var(--color-black);
+      transition: background var(--transition-base), color var(--transition-base);
+    }
+    .cat__icon svg { width: 18px; height: 18px; }
+    .cat__label {
+      flex: 1;
+      min-width: 0;
+    }
+    .cat__arrow {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      color: var(--color-gray-400);
+      transition: color var(--transition-base), transform var(--transition-base);
+    }
+    .cat:hover .cat__icon {
+      background: rgba(33,118,255,0.10);
+      color: var(--color-blue);
+    }
+    .cat:hover .cat__arrow {
+      color: var(--color-blue);
+      transform: translateX(2px);
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      padding: 24px 0 56px;
+      text-align: center;
+    }
+    .footer__social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .footer__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--color-black);
+      transition: color var(--transition-base), transform var(--transition-fast);
+    }
+    .footer__icon:hover { color: var(--color-blue); }
+    .footer__icon:active { transform: scale(0.92); }
+    .footer__icon svg { width: 22px; height: 22px; }
+    .footer__copy {
+      font-family: var(--font-secondary);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--color-gray-500);
+      letter-spacing: 0.04em;
+    }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulseHalo {
+      0%   { transform: scale(0.6); opacity: 0.55; }
+      100% { transform: scale(2.6); opacity: 0; }
+    }
+    @keyframes glowBreath {
+      0%, 100% { opacity: 0.6; }
+      50%      { opacity: 1; }
+    }
+    @keyframes shimmerSweep {
+      0%   { transform: translateX(-120%) skewX(-18deg); }
+      100% { transform: translateX(260%) skewX(-18deg); }
+    }
+
+    /* Stagger reveal nos blocos do .page */
+    .page > * {
+      opacity: 0;
+      animation: fadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .page > *:nth-child(1) { animation-delay: 80ms; }
+    .page > *:nth-child(2) { animation-delay: 160ms; }
+    .page > *:nth-child(3) { animation-delay: 240ms; }
+    .page > *:nth-child(4) { animation-delay: 320ms; }
+    .page > *:nth-child(5) { animation-delay: 400ms; }
+    .page > *:nth-child(6) { animation-delay: 480ms; }
+    .page > *:nth-child(n+7) { animation-delay: 560ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page > *,
+      body::before,
+      .badge__dot::after,
+      .btn__dot::after,
+      .cupom::after { animation: none !important; }
+      .page > * { opacity: 1; }
+    }
+
+    /* ========== BADGE (header) ========== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-full);
+      box-shadow: 0 1px 2px rgba(20,20,20,0.04);
+      margin-bottom: 22px;
+    }
+    .badge__dot {
+      position: relative;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #16a34a;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 2px rgba(22,163,74,0.18);
+    }
+    .badge__dot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #16a34a;
+      animation: pulseHalo 1.9s ease-out infinite;
+    }
+    .badge__text {
+      font-family: var(--font-secondary);
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--color-gray-700);
+    }
+
+    /* ========== BTN STATUS DOT (WhatsApp) ========== */
+    .btn__dot {
+      position: relative;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--color-white);
+      flex-shrink: 0;
+    }
+    .btn__dot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.85);
+      animation: pulseHalo 1.7s ease-out infinite;
+    }
+
+    /* ========== PRODUCT TAG ========== */
+    .product__tag {
+      position: absolute;
+      top: -7px;
+      left: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 9px;
+      background: var(--color-blue);
+      color: var(--color-white);
+      border-radius: var(--radius-full);
+      font-family: var(--font-secondary);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 6px 14px -6px rgba(33,118,255,0.6);
+      z-index: 2;
+    }
+
+    /* ========== CUPOM SHIMMER ========== */
+    .cupom::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(
+        100deg,
+        transparent 30%,
+        rgba(255,255,255,0.10) 50%,
+        transparent 70%
+      );
+      transform: translateX(-120%) skewX(-18deg);
+      animation: shimmerSweep 4.5s ease-in-out 2.5s infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ========== CAT ICON HOVER SCALE ========== */
+    .cat__icon {
+      transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base);
+    }
+    .cat:hover .cat__icon { transform: scale(1.08); }
+
+    @media (min-width: 481px) {
+      .header { padding-top: 64px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJL35DD9"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <main class="page">
+
+    <!-- ============================================================
+         HEADER
+    ============================================================ -->
+    <header class="header">
+      <div class="badge" aria-label="Loja oficial neua online">
+        <span class="badge__dot" aria-hidden="true"></span>
+        <span class="badge__text">Loja oficial · Online agora</span>
+      </div>
+      <div class="header__logo" aria-label="neua">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2578.91 565.12" role="img" aria-hidden="true">
+          <g fill="#141414">
+            <path d="M544.65,73.29c-88.49,94.08-107.6,229.58-57.44,341.71,4.61,10.42,9.94,20.71,15.81,30.65,11.59,19.77,25.7,38.54,42.05,55.89,7.57,7.19,11.53,18.12,8.59,29.9-2.53,10.16-10.55,18.49-20.6,21.43-11.14,3.28-21.43.19-28.82-6.17l-.16.16c-3.51-3.49-7.14-6.79-10.84-10l-130.47-130.47-194.74-194.74c10.34,50.23,10.28,102.21-.21,152.42-4.27,20.71-10.42,41.07-18.26,60.86,4.33-1.74,8.67-3.36,13.08-4.89,4.19-1.54,8.39-2.94,12.66-4.27,11.96-3.72,23.99-6.85,36.17-9.3,38.18-7.99,77.44-9.81,116.19-5.54l71.84,71.84c2.78,2.78-.15,7.32-3.82,5.97-105.76-39.01-228.48-18.98-316.84,60.36-1.69,1.54-3.36,3.07-4.97,4.55l-.7.7c-2.32,2.16-4.63,4.4-6.87,6.57-1.82,1.82-3.49,3.57-5.18,5.31l-.08-.08c-7.18,7.26-18,10.93-29.53,7.91-10.13-2.65-18.33-10.84-20.97-20.97-3-11.53.65-22.34,7.92-29.51l-.06-.06,11.82-11.83.13-.13,4.14-4.12c-1.41,1.19-2.87,2.52-4.2,3.85,110.94-118.02,112.91-301.3,5.81-421.55-3.99-4.48-8.05-8.88-12.39-13.15l-.21-.28c-4.48-4.42-8.75-8.98-12.92-13.59C2.47,45.76-2.03,34.72.89,22.64,3.43,12.12,11.89,3.56,22.39.95c11.74-2.92,22.55,1.14,29.59,8.77,1.19.97,2.22,2.01,3.28,2.99l20.91,20.91c.28.29.55.63.84.91l133.33,133.27,196.98,197c-1.27-6.02-2.37-12.11-3.36-18.2-.91-5.73-1.75-11.48-2.37-17.21-4.42-39.45-2.6-79.53,5.45-118.49,4.33-20.86,10.36-41.28,18.33-61.22-20.08,7.97-40.65,14.06-61.56,18.39-38.83,8.05-78.7,9.87-118.09,5.47l-72.6-72.61c-2.79-2.78.16-7.34,3.83-5.96,107.62,40.68,233.19,19.85,322.42-62.47.42-.34.83-.76,1.33-1.19l.34-.42c2.6-2.37,5.11-4.82,7.63-7.27.86-.89,1.74-1.8,2.61-2.69,6.33-7.48,16.09-11.96,26.98-10.58,13.12,1.67,24.03,12.21,26.02,25.28,1.57,10.21-1.96,19.64-8.44,26.17l.11.1c-1.54,1.4-3,2.87-4.48,4.33-2.31,2.32-4.48,4.63-6.72,6.93l-.13.15Z"/>
+            <path d="M1170.57,233.72v96.57c0,53.92,38.63,92.54,92.54,92.54h350.06v-64.38h-350.06c-18.51,0-28.17-9.66-28.17-28.16v-16.1h378.22v-64.38h-378.22v-16.09c0-18.51,9.66-28.16,28.17-28.16h350.06v-64.38h-350.06c-53.92,0-92.54,38.63-92.54,92.54Z"/>
+            <path d="M2031.67,330.29c0,18.51-9.66,28.16-28.16,28.16h-257.52c-18.51,0-28.17-9.66-28.17-28.16v-189.11h-64.38v189.11c0,53.92,38.63,92.54,92.54,92.54h257.52c53.92,0,92.54-38.63,92.54-92.54v-189.11h-64.38v189.11Z"/>
+            <path d="M2486.37,141.18h-257.51c-53.92,0-92.54,38.63-92.54,92.54v96.57c0,53.92,38.63,92.54,92.54,92.54h51.1c44.66,0,94.15-20.52,125.94-52.31l22.94-23.34c19.72-19.31,52.31-33,80.07-33h5.64v108.64h64.38v-189.11c0-53.92-38.63-92.54-92.54-92.54ZM2514.53,249.81h-5.64c-44.66,0-94.15,20.52-125.94,52.31l-22.93,23.34c-19.72,19.31-52.31,32.99-80.07,32.99h-51.1c-18.51,0-28.17-9.66-28.17-28.16v-96.57c0-18.51,9.65-28.16,28.17-28.16h257.51c18.51,0,28.17,9.65,28.17,28.16v16.09Z"/>
+            <path d="M1057.7,420.72l-81.29-180.53c-32.84-74.42-73.55-99.51-161.43-99.51h-126.1v283.77h70.82v-228.66h55.27c28.73,0,68.09,11.59,92.55,66.99l73,161.67h148.56V142.06h-71.39v278.66Z"/>
+          </g>
+        </svg>
+      </div>
+      <p class="header__tagline">Seu ambiente é sua assinatura.</p>
+    </header>
+
+    <!-- ============================================================
+         PRIMARY BUTTONS
+    ============================================================ -->
+    <div class="primary-stack">
+      <a
+        href="https://neua.com.br?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=link_principal&utm_content=loja"
+        target="_blank"
+        rel="noopener"
+        class="btn btn--primary"
+        data-bio-click="loja"
+      >
+        Acessar a loja
+      </a>
+      <a
+        href="https://chat.whatsapp.com/Jgh0yXqMa0r7OzRfTMyC1E?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=link_principal&utm_content=grupo_vip"
+        target="_blank"
+        rel="noopener"
+        class="btn btn--whatsapp"
+        data-bio-click="grupo_vip"
+      >
+        <span class="btn__dot" aria-hidden="true"></span>
+        <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Entrar no grupo VIP
+      </a>
+    </div>
+
+    <!-- ============================================================
+         DIVIDER
+    ============================================================ -->
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         CUPOM
+    ============================================================ -->
+    <section class="cupom" aria-label="Cupom de primeira compra">
+      <p class="cupom__title">Primeira compra na NEUA</p>
+      <p class="cupom__support">Use o cupom no checkout.</p>
+      <div class="cupom__code-wrap">
+        <span class="cupom__code" id="cupom-code">NEUA1</span>
+      </div>
+      <div>
+        <button type="button" class="cupom__btn" id="cupom-btn">
+          <span id="cupom-btn-label">Copiar cupom</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TOP PRODUTOS
+    ============================================================ -->
+    <section class="section">
+      <h2 class="section__title">Mais procurados</h2>
+      <div class="product-stack">
+
+        <a
+          href="https://neua.com.br/products/suporte-celular-rotativo-madeira-neua?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=produto&utm_content=magnus"
+          target="_blank"
+          rel="noopener"
+          class="product"
+          data-bio-click="produto_magnus"
+        >
+          <span class="product__tag">Mais vendido</span>
+          <img class="product__image" src="/bio/images/magnus.jpg" alt="Suporte para Celular Magnus" loading="lazy" />
+          <div class="product__body">
+            <span class="product__name">Suporte para Celular Magnus</span>
+            <span class="product__support">Madeira nobre + metal. Rotação 360°.</span>
+            <span class="product__price">R$ 179,90</span>
+          </div>
+          <svg class="product__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+
+        <a
+          href="https://neua.com.br/products/mousepad-felcro-neua-mouse-pad?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=produto&utm_content=flowdesk"
+          target="_blank"
+          rel="noopener"
+          class="product"
+          data-bio-click="produto_flowdesk"
+        >
+          <img class="product__image" src="/bio/images/flowdesk.jpg" alt="Mouse Pad FlowDesk" loading="lazy" />
+          <div class="product__body">
+            <span class="product__name">Mouse Pad FlowDesk</span>
+            <span class="product__support">Feltro premium. Cobre toda a mesa.</span>
+            <span class="product__price">R$ 197,00</span>
+          </div>
+          <svg class="product__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+
+        <a
+          href="https://neua.com.br/products/bandeja-organizadora-de-mesa-nsense-preto-organizacao?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=produto&utm_content=tray"
+          target="_blank"
+          rel="noopener"
+          class="product"
+          data-bio-click="produto_tray"
+        >
+          <img class="product__image" src="/bio/images/tray.jpg" alt="Bandeja Tray" loading="lazy" />
+          <div class="product__body">
+            <span class="product__name">Bandeja Tray</span>
+            <span class="product__support">Fim da mesa bagunçada.</span>
+            <span class="product__price">R$ 269,90</span>
+          </div>
+          <svg class="product__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+
+        <a
+          href="https://neua.com.br/products/suporte-canetas-noxe-madeira-nogueira-nsense?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=produto&utm_content=noxe"
+          target="_blank"
+          rel="noopener"
+          class="product"
+          data-bio-click="produto_noxe"
+        >
+          <img class="product__image" src="/bio/images/noxe.jpg" alt="Porta Canetas Noxe" loading="lazy" />
+          <div class="product__body">
+            <span class="product__name">Porta Canetas Noxe</span>
+            <span class="product__support">Nogueira. Design minimalista.</span>
+            <span class="product__price">R$ 139,90</span>
+          </div>
+          <svg class="product__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CATEGORIAS
+    ============================================================ -->
+    <section class="section">
+      <h2 class="section__title">Explorar por categoria</h2>
+      <div class="cat-list">
+
+        <a class="cat" target="_blank" rel="noopener" data-bio-click="cat_notebook"
+          href="https://neua.com.br/collections/colecao-suporte-de-notebook-ergonomia-performance?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=categoria&utm_content=cat_notebook">
+          <span class="cat__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="2" x2="22" y1="20" y2="20"/></svg>
+          </span>
+          <span class="cat__label">Suportes para Notebook</span>
+          <svg class="cat__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+
+        <a class="cat" target="_blank" rel="noopener" data-bio-click="cat_mousepads"
+          href="https://neua.com.br/collections/mouse-pads?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=categoria&utm_content=cat_mousepads">
+          <span class="cat__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="7"/><path d="M12 6v4"/></svg>
+          </span>
+          <span class="cat__label">Mouse Pads</span>
+          <svg class="cat__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+
+        <a class="cat" target="_blank" rel="noopener" data-bio-click="cat_celular"
+          href="https://neua.com.br/collections/suporte-para-celular?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=categoria&utm_content=cat_celular">
+          <span class="cat__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+          </span>
+          <span class="cat__label">Suportes para Celular</span>
+          <svg class="cat__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+
+        <a class="cat" target="_blank" rel="noopener" data-bio-click="cat_organizacao"
+          href="https://neua.com.br/collections/acessorios-de-organizacao?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=categoria&utm_content=cat_organizacao">
+          <span class="cat__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg>
+          </span>
+          <span class="cat__label">Organização</span>
+          <svg class="cat__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+
+        <a class="cat" target="_blank" rel="noopener" data-bio-click="cat_cabos"
+          href="https://neua.com.br/collections/colecao-organizador-de-cabos-cable-management?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=categoria&utm_content=cat_cabos">
+          <span class="cat__icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="3" width="4" height="6" rx="0.5"/><line x1="7" y1="3" x2="7" y2="1.5"/><line x1="9" y1="3" x2="9" y2="1.5"/><line x1="8" y1="9" x2="8" y2="21"/><rect x="14" y="3" width="4" height="6" rx="0.5"/><line x1="15" y1="3" x2="15" y2="1.5"/><line x1="17" y1="3" x2="17" y2="1.5"/><line x1="16" y1="9" x2="16" y2="21"/></svg>
+          </span>
+          <span class="cat__label">Organização de Cabos</span>
+          <svg class="cat__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+
+        <a class="cat" target="_blank" rel="noopener" data-bio-click="cat_monitor"
+          href="https://neua.com.br/collections/colecao-suporte-de-monitor-ergonomia-saude-foco?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=categoria&utm_content=cat_monitor">
+          <span class="cat__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+          </span>
+          <span class="cat__label">Suportes para Monitor</span>
+          <svg class="cat__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+
+        <a class="cat" target="_blank" rel="noopener" data-bio-click="cat_headset"
+          href="https://neua.com.br/collections/colecao-suporte-de-headset-organizacao-design-estetica?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=categoria&utm_content=cat_headset">
+          <span class="cat__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H4a1 1 0 0 1-1-1v-6a9 9 0 0 1 18 0v6a1 1 0 0 1-1 1h-2a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+          </span>
+          <span class="cat__label">Suportes para Headset</span>
+          <svg class="cat__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+
+        <a class="cat" target="_blank" rel="noopener" data-bio-click="cat_ergonomia"
+          href="https://neua.com.br/collections/ergonomia?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=categoria&utm_content=cat_ergonomia">
+          <span class="cat__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/><path d="M3 11v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z"/><path d="M5 18v2"/><path d="M19 18v2"/></svg>
+          </span>
+          <span class="cat__label">Ergonomia</span>
+          <svg class="cat__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+
+        <a class="cat" target="_blank" rel="noopener" data-bio-click="cat_limpeza"
+          href="https://neua.com.br/collections/colecao-kit-de-limpeza-setup-impecavel?utm_campaign=insta&utm_source=bio&utm_medium=bio&utm_term=categoria&utm_content=cat_limpeza">
+          <span class="cat__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+          </span>
+          <span class="cat__label">Limpeza</span>
+          <svg class="cat__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer class="footer">
+      <div class="footer__social">
+        <a href="https://instagram.com/neua.com.br" target="_blank" rel="noopener" class="footer__icon" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <a href="https://wa.me/5531984635554" target="_blank" rel="noopener" class="footer__icon" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        </a>
+        <a href="mailto:neua.controle@gmail.com" class="footer__icon" aria-label="E-mail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </a>
+      </div>
+      <p class="footer__copy">© 2026 neua</p>
+    </footer>
+
+  </main>
+
+  <script>
+    (function () {
+      window.dataLayer = window.dataLayer || [];
+
+      document.querySelectorAll('[data-bio-click]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          window.dataLayer.push({
+            event: 'click_bio',
+            destino: el.getAttribute('data-bio-click')
+          });
+        });
+      });
+
+      var btn = document.getElementById('cupom-btn');
+      var label = document.getElementById('cupom-btn-label');
+      var code = 'NEUA1';
+      var resetTimer;
+
+      function fallbackCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+
+      btn.addEventListener('click', function () {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).catch(function () { fallbackCopy(code); });
+        } else {
+          fallbackCopy(code);
+        }
+
+        label.textContent = 'Copiado ✓';
+        btn.classList.add('cupom__btn--copied');
+
+        window.dataLayer.push({ event: 'cupom_copiado', cupom: code });
+
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(function () {
+          label.textContent = 'Copiar cupom';
+          btn.classList.remove('cupom__btn--copied');
+        }, 2000);
+      });
+    })();
+  </script>
+</body>
+</html>
