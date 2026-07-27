@@ -126,6 +126,58 @@
       line-height: 1.4;
     }
 
+    /* ========== CAMPANHA / ANIVERSÁRIO ========== */
+    .campaign {
+      text-align: center;
+      margin-top: 24px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .campaign__headline {
+      font-family: var(--font-primary);
+      font-size: 25px;
+      font-weight: 600;
+      color: var(--color-black);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .campaign__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 18px 0 22px;
+    }
+    .campaign__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 16px;
+      background: var(--color-white);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      font-family: var(--font-primary);
+      font-size: 14.5px;
+      font-weight: 400;
+      color: var(--color-gray-700);
+      line-height: 1.4;
+    }
+    .campaign__item svg {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      color: var(--color-blue);
+    }
+    .campaign__item strong {
+      font-weight: 600;
+      color: var(--color-black);
+    }
+    @media (min-width: 480px) {
+      .campaign__headline { font-size: 30px; }
+    }
+
     /* ========== PRIMARY BUTTONS ========== */
     .primary-stack {
       display: flex;
@@ -604,6 +656,24 @@
         </svg>
       </div>
       <p class="header__tagline">Seu ambiente é sua assinatura.</p>
+
+      <div class="campaign">
+        <h1 class="campaign__headline">Condições exclusivas no Aniversário Neua</h1>
+        <ul class="campaign__list">
+          <li class="campaign__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+            <span><strong>30% de desconto</strong></span>
+          </li>
+          <li class="campaign__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+            <span>Produto brinde em todas as compras</span>
+          </li>
+          <li class="campaign__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+            <span>Frete grátis para todo Brasil</span>
+          </li>
+        </ul>
+      </div>
     </header>
 
     <!-- ============================================================
